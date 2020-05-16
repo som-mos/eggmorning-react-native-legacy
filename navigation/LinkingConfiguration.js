@@ -7,7 +7,10 @@ export default {
       path: 'root',
       screens: {
         Home: 'home',
-        Links: 'links',
+        Search: 'search',
+        Bookmark: 'bookmark',
+        Mypage: 'mypage',
+        More: 'more',
       },
     },
   },
