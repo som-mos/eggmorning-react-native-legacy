@@ -1,14 +1,17 @@
 const tintColor = '#f7b500';
+const subColor = '#fcdb00';
+const textColor = '#494547';
 
 export default {
   tintColor,
-  tabIconDefault: '#494547',
+  tabIconDefault: textColor,
   tabIconSelected: tintColor,
   tabBar: '#fff',
+  Text: textColor,
   errorBackground: 'red',
   errorText: '#fff',
-  warningBackground: '#EAEB5E',
-  warningText: '#f7b500',
+  warningBackground: subColor,
+  warningText: '#000',
   noticeBackground: tintColor,
   noticeText: '#fff',
 };
