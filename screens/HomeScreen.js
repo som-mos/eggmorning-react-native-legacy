@@ -7,7 +7,7 @@ import { Image, Platform, StyleSheet, TouchableOpacity, View, SafeAreaView,
   Animated,
   useWindowDimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Text } from 'native-base';
+import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail } from 'native-base';
 // import { MonoText } from '../components/StyledText';
 // import { SwipeRow } from 'native-base-theme/components';
 
@@ -19,6 +19,8 @@ const images = [
   "https://masonfit.com/wp-content/uploads/2018/12/healthy-southwest-sweet-potato-breakfast-hash.jpg",
   "https://www.spoonforkbacon.com/wordpress/wp-content/uploads/2018/06/Chorizo_breakfast_tacos-800x1066.jpg"
 ];
+
+const hotelImeage = ["https://facebook.github.io/react-native/docs/assets/favicon.png"];
 
 export default function HomeScreen() {
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -88,10 +90,61 @@ export default function HomeScreen() {
           </View>
         </View>
         </Row>
-        
       </Grid>
-      
     </SafeAreaView>
+    <SafeAreaView style={styles.topListContainer}>
+      <Grid>
+        <Row style={{ height: 24, paddingLeft: 30 }}> 
+          <Text style={styles.textTitle}>Top5</Text>
+        </Row>
+        <Row>
+        <Content style={{paddingLeft:15, paddingRight:15 }}>
+          <List>
+            <ListItem>
+                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Body>
+                  <Text>Hotel 1</Text>
+                  <Text note>This hotel is good</Text>
+                </Body>  
+                <Text note>9.9/10</Text>
+            </ListItem>
+            <ListItem>
+                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Body>
+                  <Text>Hotel 2</Text>
+                  <Text note>This hotel is good</Text>
+                </Body>  
+                <Text note>9.8/10</Text>
+            </ListItem>
+            <ListItem>
+                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Body>
+                  <Text>Hotel 3</Text>
+                  <Text note>This hotel is good</Text>
+                </Body>  
+                <Text note>9.7/10</Text>
+            </ListItem>
+            <ListItem>
+                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Body>
+                  <Text>Hotel 4</Text>
+                  <Text note>This hotel is good</Text>
+                </Body>  
+                <Text note>9.6/10</Text>
+            </ListItem>
+            <ListItem>
+                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Body>
+                  <Text>Hotel 5</Text>
+                  <Text note>This hotel is good</Text>
+                </Body>  
+                <Text note>9.5/10</Text>
+            </ListItem>
+          </List>
+        </Content>
+      </Row>
+    </Grid>
+      </SafeAreaView>
     </Container>
   );
 }
@@ -110,6 +163,12 @@ const styles = StyleSheet.create({
     height: 450,
     alignItems: "center",
     justifyContent: "center",
+  },
+  topListContainer: {
+    flex: 1,
+    marginTop:300,
+    width:"100%",
+    height: 550,
   },
   card: {
     flex: 1,
