@@ -29,9 +29,10 @@ export default function HomeScreen() {
 
   return (
     <Container>
+      <ScrollView>
     <SafeAreaView style={styles.container}>
       <Grid>
-        <Row style={{ height: 24, paddingLeft: 30 }}>
+        <Row style={{ height: 48, paddingLeft: 30, paddingTop:20 }}>
           <Text style={styles.textTitle}>News</Text>
         </Row>
         <Row>
@@ -60,9 +61,31 @@ export default function HomeScreen() {
                 >
                   <ImageBackground source={{ uri: image }} style={styles.card}>
                     <View style={styles.textContainer}>
-                      <Text style={styles.infoText}>
-                        {"Image - " + imageIndex}
-                      </Text>
+                      <Grid>
+                        <Row>
+                          <Text style={styles.bigText}>
+                          Title Text
+                          </Text>
+                        </Row>
+                        <Col>
+                        <Image
+                            source={require('../img/face.jpg')}
+                            style={{ width: 40, height: 40 }}
+                          />
+                        </Col>
+                        <Col>
+                        <Row>
+                          <Text style={styles.smallText}>
+                          WRITER
+                          </Text>
+                        </Row>
+                        <Row>
+                          <Text style={styles.nomalText}>
+                          ASHA LEE
+                          </Text>
+                        </Row>
+                        </Col>
+                      </Grid>
                     </View>
                   </ImageBackground>
                 </View>
@@ -92,9 +115,9 @@ export default function HomeScreen() {
         </Row>
       </Grid>
     </SafeAreaView>
-    <SafeAreaView style={styles.topListContainer}>
+    <View style={styles.topListContainer}>
       <Grid>
-        <Row style={{ height: 24, paddingLeft: 30 }}> 
+        <Row style={{ height: 48, paddingLeft: 30, paddingTop:20 }}> 
           <Text style={styles.textTitle}>Top5</Text>
         </Row>
         <Row>
@@ -144,7 +167,8 @@ export default function HomeScreen() {
         </Content>
       </Row>
     </Grid>
-      </SafeAreaView>
+      </View>
+      </ScrollView>
     </Container>
   );
 }
@@ -157,7 +181,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   scrollContainer: {
     height: 450,
@@ -166,9 +190,9 @@ const styles = StyleSheet.create({
   },
   topListContainer: {
     flex: 1,
-    marginTop:300,
+    marginTop:50,
     width:"100%",
-    height: 550,
+    height: 400,
   },
   card: {
     flex: 1,
@@ -189,10 +213,18 @@ const styles = StyleSheet.create({
     bottom: 25,
     position: "absolute"
   },
-  infoText: {
+  smallText: {
+    color: "#888888",
+    fontSize: 14,
+  },
+  nomalText: {
     color: "#000",
     fontSize: 16,
-    fontWeight: "bold"
+  },
+  bigText: {
+    color: "#000",
+    fontSize: 20,
+    fontWeight: "bold",
   },
   normalDot: {
     height: 8,
@@ -209,5 +241,5 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: 24,
     fontWeight: "bold"
-  }
+  },
 });

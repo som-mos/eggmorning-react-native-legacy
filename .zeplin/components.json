@@ -1,0 +1,15 @@
+{
+    "projects": [
+    ],
+    "styleguides": [
+        "5ec7dcc34e8916298486f9bc"
+    ],
+    "components": [
+        {
+            "path": "components/Button.jsx",
+            "zeplinNames": [
+                "more-button"
+            ]
+        }
+    ]
+}
