@@ -67,10 +67,12 @@ export default function HomeScreen() {
                           Title Text
                           </Text>
                         </Row>
+                        </Grid>
+                        <Grid>
                         <Col>
                         <Image
                             source={require('../img/face.jpg')}
-                            style={{ width: 40, height: 40 }}
+                            style={{ width: 40, height: 40, borderRadius: 50 }}
                           />
                         </Col>
                         <Col>
@@ -85,6 +87,8 @@ export default function HomeScreen() {
                           </Text>
                         </Row>
                         </Col>
+                        <Col></Col>
+                        <Col></Col>
                       </Grid>
                     </View>
                   </ImageBackground>
@@ -124,7 +128,7 @@ export default function HomeScreen() {
         <Content style={{paddingLeft:15, paddingRight:15 }}>
           <List>
             <ListItem>
-                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
                 <Body>
                   <Text>Hotel 1</Text>
                   <Text note>This hotel is good</Text>
@@ -132,7 +136,7 @@ export default function HomeScreen() {
                 <Text note>9.9/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
                 <Body>
                   <Text>Hotel 2</Text>
                   <Text note>This hotel is good</Text>
@@ -140,7 +144,7 @@ export default function HomeScreen() {
                 <Text note>9.8/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
                 <Body>
                   <Text>Hotel 3</Text>
                   <Text note>This hotel is good</Text>
@@ -148,7 +152,7 @@ export default function HomeScreen() {
                 <Text note>9.7/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
                 <Body>
                   <Text>Hotel 4</Text>
                   <Text note>This hotel is good</Text>
@@ -156,7 +160,7 @@ export default function HomeScreen() {
                 <Text note>9.6/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square small source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
                 <Body>
                   <Text>Hotel 5</Text>
                   <Text note>This hotel is good</Text>
@@ -192,7 +196,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop:50,
     width:"100%",
-    height: 400,
+    height: 650,
   },
   card: {
     flex: 1,
@@ -215,11 +219,11 @@ const styles = StyleSheet.create({
   },
   smallText: {
     color: "#888888",
-    fontSize: 14,
+    fontSize: 11,
   },
   nomalText: {
     color: "#000",
-    fontSize: 16,
+    fontSize: 14,
   },
   bigText: {
     color: "#000",
