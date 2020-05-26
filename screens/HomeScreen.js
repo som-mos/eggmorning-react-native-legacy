@@ -5,9 +5,10 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 import { Image, Platform, StyleSheet, TouchableOpacity, View, SafeAreaView,
   ImageBackground,
   Animated,
-  useWindowDimensions } from 'react-native';
+  useWindowDimensions, 
+  ImageBackgroundComponent} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail } from 'native-base';
+import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button } from 'native-base';
 // import { MonoText } from '../components/StyledText';
 // import { SwipeRow } from 'native-base-theme/components';
 
@@ -32,7 +33,8 @@ export default function HomeScreen() {
       <ScrollView>
     <SafeAreaView style={styles.container}>
       <Grid>
-        <Row style={{ height: 48, paddingLeft: 30, paddingTop:20 }}>
+        <Row style={styles.titleLine}></Row>
+        <Row style={{ height: 36, paddingLeft: 30}}>
           <Text style={styles.textTitle}>News</Text>
         </Row>
         <Row>
@@ -88,7 +90,13 @@ export default function HomeScreen() {
                         </Row>
                         </Col>
                         <Col></Col>
-                        <Col></Col>
+                        <Col>
+                          <Button style={styles.slideBt}>
+                            <Image source={require('../img/moreBT.png')}
+                            style={{ width: 96, height: 50 }}>
+                            </Image>
+                          </Button>
+                        </Col>
                       </Grid>
                     </View>
                   </ImageBackground>
@@ -121,14 +129,15 @@ export default function HomeScreen() {
     </SafeAreaView>
     <View style={styles.topListContainer}>
       <Grid>
-        <Row style={{ height: 48, paddingLeft: 30, paddingTop:20 }}> 
+        <Row style={styles.titleLine}></Row>
+        <Row style={{ height: 36, paddingLeft: 30}}> 
           <Text style={styles.textTitle}>Top5</Text>
         </Row>
         <Row>
         <Content style={{paddingLeft:15, paddingRight:15 }}>
           <List>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
                 <Body>
                   <Text>Hotel 1</Text>
                   <Text note>This hotel is good</Text>
@@ -136,7 +145,7 @@ export default function HomeScreen() {
                 <Text note>9.9/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
                 <Body>
                   <Text>Hotel 2</Text>
                   <Text note>This hotel is good</Text>
@@ -144,7 +153,7 @@ export default function HomeScreen() {
                 <Text note>9.8/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
                 <Body>
                   <Text>Hotel 3</Text>
                   <Text note>This hotel is good</Text>
@@ -152,7 +161,7 @@ export default function HomeScreen() {
                 <Text note>9.7/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
                 <Body>
                   <Text>Hotel 4</Text>
                   <Text note>This hotel is good</Text>
@@ -160,7 +169,7 @@ export default function HomeScreen() {
                 <Text note>9.6/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}}/>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
                 <Body>
                   <Text>Hotel 5</Text>
                   <Text note>This hotel is good</Text>
@@ -243,7 +252,27 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   textTitle: {
-    fontSize: 24,
-    fontWeight: "bold"
+    height: 33,
+    // fontFamily: "AppleSDGothicNeo",
+    fontSize: 28,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    letterSpacing: 0,
+    color: "#000000"
+  },
+  titleLine:{
+    width: 18,
+    height: 1,
+    borderBottomWidth:3,
+    borderStyle: "solid",
+    borderColor: "#f7b500",
+    marginLeft: 30,
+    marginTop: 30
+  },
+  slideBt:{
+    backgroundColor: "transparent",
+    color: "transparent",
+    width: 96,
+    height: 50
   },
 });
