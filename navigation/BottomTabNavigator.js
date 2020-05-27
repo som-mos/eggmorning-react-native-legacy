@@ -16,7 +16,16 @@ export default function BottomTabNavigator({ navigation, route }) {
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
 
-  // navigation.setOptions({ header: });
+navigation.setOptions({ 
+  header: {
+    titleStyle: {
+     color:"#494547",
+    },
+    tintColor: {
+      color:"#f7b500",
+    }
+  }
+});
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
@@ -25,7 +34,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={SearchScreen}
         options={{
           title: '검색',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="search" />,
         }}
       />
       <BottomTab.Screen
@@ -33,7 +42,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={BookmarkScreen}
         options={{
           title: '찜목록',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-heart" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="heart" />,
         }}
       />
       <BottomTab.Screen
@@ -41,7 +50,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={HomeScreen}
         options={{
           title: '홈',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="home" />,
         }}
       />
       <BottomTab.Screen
@@ -49,7 +58,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={MypageScreen}
         options={{
           title: '마이페이지',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="user" />,
         }}
       />
       <BottomTab.Screen
@@ -57,7 +66,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={MoreScreen}
         options={{
           title: '더보기',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-more" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="more-horizontal" />,
         }}
       />
     </BottomTab.Navigator>

@@ -150,7 +150,7 @@ export default {
 
   // Font
   DefaultFontSize: 14,
-  fontFamily: platform === PLATFORM.IOS ? 'System' : 'Roboto',
+  fontFamily: platform === PLATFORM.IOS ? 'System' : 'AppleSDGothicNeo',
   fontSizeBase: 15,
   get fontSizeH1() {
     return this.fontSizeBase * 1.8;
@@ -168,7 +168,7 @@ export default {
   footerPaddingBottom: 0,
 
   // FooterTab
-  tabBarTextColor: platform === PLATFORM.IOS ? '#161616' : '#161616',
+  tabBarTextColor: platform === PLATFORM.IOS ? '#494547' : '#494547',
   tabBarTextSize: platform === PLATFORM.IOS ? 12 : 11,
   activeTab: platform === PLATFORM.IOS ? '#fff' : '#fff',
   sTabBarActiveTextColor: '#f7b500',

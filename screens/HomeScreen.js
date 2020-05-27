@@ -78,12 +78,12 @@ export default function HomeScreen() {
                           />
                         </Col>
                         <Col>
-                        <Row>
+                        <Row style={{ height: 14, marginTop: 7}}>
                           <Text style={styles.smallText}>
                           WRITER
                           </Text>
                         </Row>
-                        <Row>
+                        <Row style={{ height: 16, width: "150%"}}>
                           <Text style={styles.nomalText}>
                           ASHA LEE
                           </Text>
@@ -217,22 +217,26 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   textContainer: {
-    backgroundColor: "rgba(255,255,255, 0.4)",
+    backgroundColor: "rgba(255,255,255, 0.55)",
     paddingHorizontal: 24,
     paddingVertical: 8,
-    borderRadius: 15,
+    borderRadius: 12,
     width:"85%",
     height: 115,
     bottom: 25,
     position: "absolute"
   },
   smallText: {
-    color: "#888888",
+    color: "#6e7174",
     fontSize: 11,
+    lineHeight: 12,
+    marginLeft: -10,
   },
   nomalText: {
     color: "#000",
     fontSize: 14,
+    lineHeight: 15,
+    marginLeft: -10,
   },
   bigText: {
     color: "#000",
@@ -275,4 +279,8 @@ const styles = StyleSheet.create({
     width: 96,
     height: 50
   },
+  scrollViewStyle:{
+
+
+  }
 });
