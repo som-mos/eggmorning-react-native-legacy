@@ -2,71 +2,78 @@ import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import { useRef } from 'react';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import Carousel from 'react-native-snap-carousel';
 import { Image, Platform, StyleSheet, TouchableOpacity, View, SafeAreaView,
   ImageBackground,
   Animated,
   useWindowDimensions, 
-  ImageBackgroundComponent} from 'react-native';
+  ImageBackgroundComponent,
+  Dimensions} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button } from 'native-base';
+import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button, DeckSwiper } from 'native-base';
 // import { MonoText } from '../components/StyledText';
 // import { SwipeRow } from 'native-base-theme/components';
 
-const images = [
-  "https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg",
-  "https://inspiralized.com/wp-content/uploads/2014/04/IMG_9392-copy2.jpg",
-  "https://www.closetcooking.com/wp-content/uploads/2012/12/BaconJamBreakfastSandwichwithFriedEggandAvocado5009978.jpg",
-  "https://forktospoon.com/wp-content/uploads/2019/12/Depositphotos_201934504_s-2019-Copy.jpg",
-  "https://masonfit.com/wp-content/uploads/2018/12/healthy-southwest-sweet-potato-breakfast-hash.jpg",
-  "https://www.spoonforkbacon.com/wordpress/wp-content/uploads/2018/06/Chorizo_breakfast_tacos-800x1066.jpg"
-];
-
 const hotelImeage = ["https://facebook.github.io/react-native/docs/assets/favicon.png"];
+const pageWidth = Dimensions.get("window").width;
 
-export default function HomeScreen() {
-  const scrollX = useRef(new Animated.Value(0)).current;
+export default class HomeScreen extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+          activeIndex:0,
+          carouselItems: [
+          {
+              title:"Item 1",
+              username: "username 1",
+              image:"https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg",
+          },
+          {
+              title:"Item 2",
+              username: "username 2",
+              image:"https://inspiralized.com/wp-content/uploads/2014/04/IMG_9392-copy2.jpg",
+          },
+          {
+              title:"Item 3",
+              username: "username 3",
+              image:"https://www.closetcooking.com/wp-content/uploads/2012/12/BaconJamBreakfastSandwichwithFriedEggandAvocado5009978.jpg",
+          },
+          {
+              title:"Item 4",
+              username: "username 4",
+              image:"https://forktospoon.com/wp-content/uploads/2019/12/Depositphotos_201934504_s-2019-Copy.jpg",
+          },
+          {
+              title:"Item 5",
+              username: "username 5",
+              image:"https://masonfit.com/wp-content/uploads/2018/12/healthy-southwest-sweet-potato-breakfast-hash.jpg",
+          },
+          {
+            title:"Item 6",
+            username: "username 6",
+            image:"https://www.spoonforkbacon.com/wordpress/wp-content/uploads/2018/06/Chorizo_breakfast_tacos-800x1066.jpg",
+        },
+        ]
+      }
+    }
 
-  const { width: windowWidth } = useWindowDimensions();
-
-  return (
-    <Container>
-      <ScrollView>
-    <SafeAreaView style={styles.container}>
-      <Grid>
-        <Row style={styles.titleLine}></Row>
-        <Row style={{ height: 36, paddingLeft: 30}}>
-          <Text style={styles.textTitle}>News</Text>
-        </Row>
-        <Row>
-        <View style={styles.scrollContainer}>
-          <ScrollView
-            horizontal={true}
-            style={styles.scrollViewStyle}
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}
-            onScroll={Animated.event([
-              {
-                nativeEvent: {
-                  contentOffset: {
-                    x: scrollX
-                  }
-                }
-              }
-            ])}
-            scrollEventThrottle={1}
-          >
-            {images.map((image, imageIndex) => {
-              return (
-                <View
-                  style={{ width: windowWidth - 20, height: 428, margin: 10 }}
-                  key={imageIndex}
-                >
-                  <ImageBackground source={{ uri: image }} style={styles.card}>
-                    <View style={styles.textContainer}>
+    // scrollX = useRef(new Animated.Value(0)).current;
+    _renderItem({item,index,image,imageIndex}){
+        return (
+          <View
+              key={imageIndex}
+              style={{
+              borderRadius: 15,
+              height: 520,
+              padding:5,
+              marginLeft:0,
+              marginRight:0, }}> 
+            <ImageBackground source={{ uri: item.image }} style={styles.ImgBg}>
+            <View style={styles.textContainer}>
                       <Grid>
                         <Row>
                           <Text style={styles.bigText}>
-                          Title Text
+                          {item.title}
                           </Text>
                         </Row>
                         </Grid>
@@ -74,18 +81,18 @@ export default function HomeScreen() {
                         <Col>
                         <Image
                             source={require('../img/face.jpg')}
-                            style={{ width: 40, height: 40, borderRadius: 50 }}
+                            style={styles.imageuser}
                           />
                         </Col>
                         <Col>
                         <Row style={{ height: 14, marginTop: 7}}>
                           <Text style={styles.smallText}>
-                          WRITER
+                            WRITER
                           </Text>
                         </Row>
                         <Row style={{ height: 16, width: "150%"}}>
                           <Text style={styles.nomalText}>
-                          ASHA LEE
+                          {item.username}
                           </Text>
                         </Row>
                         </Col>
@@ -99,35 +106,37 @@ export default function HomeScreen() {
                         </Col>
                       </Grid>
                     </View>
-                  </ImageBackground>
-                </View>
-              );
-            })}
-          </ScrollView>
-          <View style={styles.indicatorContainer}>
-            {images.map((image, imageIndex) => {
-              const width = scrollX.interpolate({
-                inputRange: [
-                  windowWidth * (imageIndex - 1),
-                  windowWidth * imageIndex,
-                  windowWidth * (imageIndex + 1)
-                ],
-                outputRange: [8, 16, 8],
-                extrapolate: "clamp"
-              });
-              return (
-                <Animated.View
-                  key={imageIndex}
-                  style={[styles.normalDot, { width }]}
-                />
-              );
-            })}
+            </ImageBackground>
           </View>
-        </View>
-        </Row>
-      </Grid>
-    </SafeAreaView>
-    <View style={styles.topListContainer}>
+        )
+    }
+
+    render() {
+        return (
+          <Container>
+            <ScrollView style={{flex:1}}>
+              <SafeAreaView style={styles.container}>
+              <Grid>
+                  <Row style={styles.titleLine}></Row>
+                  <Row style={{ height: 36, paddingLeft: 30}}>
+                    <Text style={styles.textTitle}>News</Text>
+                  </Row>
+                  <Row>
+                <View style={styles.scrollContainer}>
+                    <Carousel
+                      layout={"default"}
+                      ref={ref => this.carousel = ref}
+                      data={this.state.carouselItems}
+                      sliderWidth={pageWidth}
+                      itemWidth={300}
+                      slideStyle={{flex:1}}
+                      renderItem={this._renderItem}
+                      onSnapToItem = { index => this.setState({activeIndex:index}) } />
+                </View>
+                </Row>
+                </Grid>
+              </SafeAreaView>
+              <View style={styles.topListContainer}>
       <Grid>
         <Row style={styles.titleLine}></Row>
         <Row style={{ height: 36, paddingLeft: 30}}> 
@@ -181,48 +190,53 @@ export default function HomeScreen() {
       </Row>
     </Grid>
       </View>
-      </ScrollView>
-    </Container>
-  );
+            </ScrollView>
+          </Container>
+        );
+    }
 }
 
 // HomeScreen.navigationOptions = {
 //   header: false,
 // };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
   },
   scrollContainer: {
-    height: 450,
-    alignItems: "center",
+    flex: 1,
+    height: 500,
     justifyContent: "center",
   },
   topListContainer: {
     flex: 1,
-    marginTop:50,
-    width:"100%",
+    marginTop:20,
     height: 650,
   },
-  card: {
-    flex: 1,
-    marginVertical: 4,
-    marginHorizontal: 16,
-    borderRadius: 15,
+  imageView:{
+    margin:10 
+  },  
+  ImgBg: {
+    height:460,
+    borderRadius:15,
+    alignContent:"center",
     overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center"
+  },
+  imageuser:{
+    width: 40, 
+    height: 40, 
+    borderRadius: 50
   },
   textContainer: {
     backgroundColor: "rgba(255,255,255, 0.55)",
     paddingHorizontal: 24,
     paddingVertical: 8,
     borderRadius: 12,
-    width:"85%",
-    height: 115,
+    width:"80%",
+    height: 125,
     bottom: 25,
     position: "absolute"
   },
@@ -257,7 +271,6 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     height: 33,
-    // fontFamily: "AppleSDGothicNeo",
     fontSize: 28,
     fontWeight: "bold",
     fontStyle: "normal",
@@ -277,10 +290,9 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     color: "transparent",
     width: 96,
-    height: 50
+    height: 50,
+    position:"absolute",
+    bottom:-20,
+    right:-40.
   },
-  scrollViewStyle:{
-
-
-  }
 });
