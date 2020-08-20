@@ -1,4 +1,4 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabBarOptions } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
@@ -7,33 +7,35 @@ import BookmarkScreen from '../screens/BookmarkScreen';
 import SearchScreen from '../screens/SearchScreen';
 import MypageScreen from '../screens/MypageScreen';
 import MoreScreen from '../screens/MoreScreen';
+import { hide } from 'expo-splash-screen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
+const TabBarOptions = BottomTabBarOptions();
 
-export default function BottomTabNavigator({ navigation, route }) {
+export default function BottomTabNavigator({ navigation, route, TabBarOptions }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
 
-navigation.setOptions({ 
+navigation.setOptions({
+  TabBarOptions: {
+    showLabel: false
+  },
   header: {
-    titleStyle: {
-     color:"#494547",
-    },
     tintColor: {
       color:"#f7b500",
     }
   }
 });
-
+ 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Search"
         component={SearchScreen}
         options={{
-          title: '검색',
+          // title: hide,
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="search" />,
         }}
       />
@@ -41,7 +43,7 @@ navigation.setOptions({
         name="Bookmark"
         component={BookmarkScreen}
         options={{
-          title: '찜목록',
+          // title: hide,
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="heart" />,
         }}
       />
@@ -49,7 +51,7 @@ navigation.setOptions({
         name="Home"
         component={HomeScreen}
         options={{
-          title: '홈',
+          // title: hide,
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="home" />,
         }}
       />
@@ -57,7 +59,7 @@ navigation.setOptions({
         name="Mypage"
         component={MypageScreen}
         options={{
-          title: '마이페이지',
+          // title: hide,
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="user" />,
         }}
       />
@@ -65,27 +67,10 @@ navigation.setOptions({
         name="More"
         component={MoreScreen}
         options={{
-          title: '더보기',
+          // title: hide,
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="more-horizontal" />,
         }}
       />
     </BottomTab.Navigator>
   );
 }
-
-// function getHeaderTitle(route) {
-//   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
-
-//   switch (routeName) {
-//     case 'Search':
-//       return 'Find Something';
-//     case 'Bookmark':
-//       return 'Bookmark';
-//     case 'Home':
-//       return 'Main';
-//     case 'Mypage':
-//       return 'Mypage';
-//     case 'More':
-//       return 'Links to learn more';
-//   }
-// }

@@ -14,7 +14,7 @@ import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail,
 // import { MonoText } from '../components/StyledText';
 // import { SwipeRow } from 'native-base-theme/components';
 
-const hotelImeage = ["https://facebook.github.io/react-native/docs/assets/favicon.png"];
+const hotelImeage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg"];
 const pageWidth = Dimensions.get("window").width;
 
 export default class HomeScreen extends React.Component{
@@ -24,32 +24,32 @@ export default class HomeScreen extends React.Component{
           activeIndex:0,
           carouselItems: [
           {
-              title:"Item 1",
+              title:"Title 1",
               username: "username 1",
               image:"https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg",
           },
           {
-              title:"Item 2",
+              title:"Title 2",
               username: "username 2",
               image:"https://inspiralized.com/wp-content/uploads/2014/04/IMG_9392-copy2.jpg",
           },
           {
-              title:"Item 3",
+              title:"Title 3",
               username: "username 3",
               image:"https://www.closetcooking.com/wp-content/uploads/2012/12/BaconJamBreakfastSandwichwithFriedEggandAvocado5009978.jpg",
           },
           {
-              title:"Item 4",
+              title:"Title 4",
               username: "username 4",
               image:"https://forktospoon.com/wp-content/uploads/2019/12/Depositphotos_201934504_s-2019-Copy.jpg",
           },
           {
-              title:"Item 5",
+              title:"Title 5",
               username: "username 5",
               image:"https://masonfit.com/wp-content/uploads/2018/12/healthy-southwest-sweet-potato-breakfast-hash.jpg",
           },
           {
-            title:"Item 6",
+            title:"Title 6",
             username: "username 6",
             image:"https://www.spoonforkbacon.com/wordpress/wp-content/uploads/2018/06/Chorizo_breakfast_tacos-800x1066.jpg",
         },
@@ -77,34 +77,32 @@ export default class HomeScreen extends React.Component{
                           </Text>
                         </Row>
                         </Grid>
-                        <Grid>
-                        <Col>
-                        <Image
-                            source={require('../img/face.jpg')}
-                            style={styles.imageuser}
-                          />
-                        </Col>
-                        <Col>
-                        <Row style={{ height: 14, marginTop: 7}}>
-                          <Text style={styles.smallText}>
-                            WRITER
-                          </Text>
-                        </Row>
-                        <Row style={{ height: 16, width: "150%"}}>
-                          <Text style={styles.nomalText}>
-                          {item.username}
-                          </Text>
-                        </Row>
-                        </Col>
-                        <Col></Col>
-                        <Col>
+                        <Grid style={{position:"releative", paddingTop:20}}>
+                          <Col style={styles.userInfo1}>
+                            <Image
+                                source={require('../img/face.jpg')}
+                                style={styles.imageuser}
+                              />
+                          </Col>
+                          <Col style={styles.userInfo2}>
+                            <Row style={styles.userRows}>
+                              <Text style={styles.smallText}>
+                                WRITER
+                              </Text>
+                            </Row>
+                            <Row style={styles.userRows}>
+                              <Text style={styles.nomalText}>
+                              {item.username}
+                              </Text>
+                            </Row>
+                          </Col>
+                        </Grid>
                           <Button style={styles.slideBt}>
                             <Image source={require('../img/moreBT.png')}
-                            style={{ width: 96, height: 50 }}>
+                            style={{ width:96, height:50}}>
                             </Image>
                           </Button>
-                        </Col>
-                      </Grid>
+                      
                     </View>
             </ImageBackground>
           </View>
@@ -117,8 +115,8 @@ export default class HomeScreen extends React.Component{
             <ScrollView style={{flex:1}}>
               <SafeAreaView style={styles.container}>
               <Grid>
-                  <Row style={styles.titleLine}></Row>
-                  <Row style={{ height: 36, paddingLeft: 30}}>
+                  <Row style={styles.titleLine1}></Row>
+                  <Row style={{ height: 36, marginLeft: 30}}>
                     <Text style={styles.textTitle}>News</Text>
                   </Row>
                   <Row>
@@ -128,17 +126,18 @@ export default class HomeScreen extends React.Component{
                       ref={ref => this.carousel = ref}
                       data={this.state.carouselItems}
                       sliderWidth={pageWidth}
-                      itemWidth={300}
-                      slideStyle={{flex:1}}
+                      itemWidth={310}
+                      slideStyle={{flex:1, paddingLeft:25, marginRight:-10}}
                       renderItem={this._renderItem}
-                      onSnapToItem = { index => this.setState({activeIndex:index}) } />
+                      onSnapToItem = { index => this.setState({activeIndex:index}) }
+                      activeSlideAlignment = {'start'} />
                 </View>
                 </Row>
                 </Grid>
               </SafeAreaView>
               <View style={styles.topListContainer}>
       <Grid>
-        <Row style={styles.titleLine}></Row>
+        <Row style={styles.titleLine2}></Row>
         <Row style={{ height: 36, paddingLeft: 30}}> 
           <Text style={styles.textTitle}>Top5</Text>
         </Row>
@@ -146,7 +145,8 @@ export default class HomeScreen extends React.Component{
         <Content style={{paddingLeft:15, paddingRight:15 }}>
           <List>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
+                <Text style={styles.red}>1</Text>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 1</Text>
                   <Text note>This hotel is good</Text>
@@ -154,7 +154,8 @@ export default class HomeScreen extends React.Component{
                 <Text note>9.9/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
+              <Text style={styles.yellow}>2</Text>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 2</Text>
                   <Text note>This hotel is good</Text>
@@ -162,7 +163,8 @@ export default class HomeScreen extends React.Component{
                 <Text note>9.8/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
+              <Text style={styles.green}>3</Text>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 3</Text>
                   <Text note>This hotel is good</Text>
@@ -170,7 +172,8 @@ export default class HomeScreen extends React.Component{
                 <Text note>9.7/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
+              <Text style={styles.blue}>4</Text>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 4</Text>
                   <Text note>This hotel is good</Text>
@@ -178,7 +181,8 @@ export default class HomeScreen extends React.Component{
                 <Text note>9.6/10</Text>
             </ListItem>
             <ListItem>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={{borderRadius: 12}}/>
+              <Text style={styles.purple}>5</Text>
+                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 5</Text>
                   <Text note>This hotel is good</Text>
@@ -208,54 +212,82 @@ export const styles = StyleSheet.create({
   },
   scrollContainer: {
     flex: 1,
-    height: 500,
+    height: 470,
     justifyContent: "center",
+    marginTop:10,
   },
   topListContainer: {
     flex: 1,
     marginTop:20,
-    height: 650,
   },
   imageView:{
     margin:10 
   },  
   ImgBg: {
-    height:460,
-    borderRadius:15,
+    height:440,
+    borderRadius:12,
     alignContent:"center",
     overflow: "hidden",
   },
-  imageuser:{
-    width: 40, 
-    height: 40, 
-    borderRadius: 50
-  },
   textContainer: {
-    backgroundColor: "rgba(255,255,255, 0.55)",
-    paddingHorizontal: 24,
-    paddingVertical: 8,
+    backgroundColor: "rgba(255,255,255, 0.6)",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     borderRadius: 12,
-    width:"80%",
+    width:"82%",
     height: 125,
     bottom: 25,
-    position: "absolute"
+    position: "absolute",
+    alignSelf: "center",
+  },
+  slideBt:{
+    backgroundColor: "transparent",
+    color: "transparent",
+    width: 96,
+    height: 50,
+    position:"absolute",
+    bottom:-15,
+    right:-15
+  },  
+  imageuser:{
+    width: 36, 
+    height: 36, 
+    borderRadius: 50
+  },
+  userInfo1:{
+    flex:"none",
+    height: 40,
+    width:"25%",
+  },
+  userInfo2:{
+    height: 40,
+    alignSelf: "left",
+    flex:"none",
+    width:"75%",
+    overflow:"hidden",
+  },
+  userRows: {
+    width: "70%",
+    textAlign:"left",
+    height:14,
+    display:"block",
+    flex:"none",
   },
   smallText: {
     color: "#6e7174",
     fontSize: 11,
     lineHeight: 12,
-    marginLeft: -10,
   },
   nomalText: {
     color: "#000",
     fontSize: 14,
     lineHeight: 15,
-    marginLeft: -10,
   },
   bigText: {
     color: "#000",
     fontSize: 20,
     fontWeight: "bold",
+    height: 60,
   },
   normalDot: {
     height: 8,
@@ -264,35 +296,53 @@ export const styles = StyleSheet.create({
     backgroundColor: "silver",
     marginHorizontal: 4
   },
-  indicatorContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center"
-  },
   textTitle: {
     height: 33,
     fontSize: 28,
     fontWeight: "bold",
     fontStyle: "normal",
     letterSpacing: 0,
-    color: "#000000"
+    color: "#000000",
+    marginBottom:10,
   },
-  titleLine:{
+  titleLine1:{
     width: 18,
     height: 1,
     borderBottomWidth:3,
     borderStyle: "solid",
     borderColor: "#f7b500",
     marginLeft: 30,
-    marginTop: 30
+    marginTop:50,
   },
-  slideBt:{
-    backgroundColor: "transparent",
-    color: "transparent",
-    width: 96,
-    height: 50,
-    position:"absolute",
-    bottom:-20,
-    right:-40.
+  titleLine2:{
+    width: 18,
+    height: 1,
+    borderBottomWidth:3,
+    borderStyle: "solid",
+    borderColor: "#f7b500",
+    marginLeft: 30,
   },
+  topThumb:{
+    borderRadius: 12, width:76, height:76
+  },
+  red:{ color:"red",
+  fontSize:18,
+  marginRight:10,
+  fontWeight:"bold",},
+  yellow:{ color:"yellow",
+  fontSize:18,
+  marginRight:10,
+  fontWeight:"bold",},
+  green:{ color:"green",
+  fontSize:18,
+  marginRight:10,
+  fontWeight:"bold",},
+  blue:{ color:"blue",
+  fontSize:18,
+  marginRight:10,
+  fontWeight:"bold",},
+  purple:{ color:"purple",
+  fontSize:18,
+  marginRight:10,
+  fontWeight:"bold",},
 });
