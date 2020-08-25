@@ -77,7 +77,7 @@ export default class HomeScreen extends React.Component{
                           </Text>
                         </Row>
                         </Grid>
-                        <Grid style={{position:"releative", paddingTop:20}}>
+                        <Grid style={{position:"relative", paddingTop:20}}>
                           <Col style={styles.userInfo1}>
                             <Image
                                 source={require('../img/face.jpg')}
@@ -242,7 +242,6 @@ export const styles = StyleSheet.create({
   },
   slideBt:{
     backgroundColor: "transparent",
-    color: "transparent",
     width: 96,
     height: 50,
     position:"absolute",
@@ -255,33 +254,37 @@ export const styles = StyleSheet.create({
     borderRadius: 50
   },
   userInfo1:{
-    flex:"none",
+    flex:1,
     height: 40,
     width:"25%",
+    maxWidth: 42,
   },
   userInfo2:{
-    height: 40,
-    alignSelf: "left",
-    flex:"none",
+    height: 36,
+    alignSelf: "flex-start",
+    flex:1,
     width:"75%",
     overflow:"hidden",
   },
   userRows: {
     width: "70%",
-    textAlign:"left",
-    height:14,
+    paddingVertical: "center",
+    height:12,
     display:"block",
-    flex:"none",
+    flex:1,
+    maxWidth:100,
   },
   smallText: {
     color: "#6e7174",
     fontSize: 11,
     lineHeight: 12,
+    textAlignVertical: "center"
   },
   nomalText: {
     color: "#000",
     fontSize: 14,
     lineHeight: 15,
+    textAlignVertical: "top"
   },
   bigText: {
     color: "#000",

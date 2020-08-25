@@ -1,4 +1,4 @@
-import { createBottomTabNavigator, BottomTabBarOptions } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
@@ -11,26 +11,31 @@ import { hide } from 'expo-splash-screen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
-const TabBarOptions = BottomTabBarOptions();
 
-export default function BottomTabNavigator({ navigation, route, TabBarOptions }) {
+export default function BottomTabNavigator({ navigation, TabBarOptions }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
 
 navigation.setOptions({
-  TabBarOptions: {
-    showLabel: false
-  },
   header: {
     tintColor: {
       color:"#f7b500",
     }
   }
 });
+
+// TabBarOptions({
+//   showLabel: false,
+// });
  
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}
+      tabBarOptions={{
+        showLabel: false,
+        headerTitle: false
+      }}
+    >
       <BottomTab.Screen
         name="Search"
         component={SearchScreen}

@@ -11,6 +11,7 @@ export default {
         Bookmark: 'bookmark',
         Mypage: 'mypage',
         More: 'more',
+        Login: 'login',
       },
     },
   },

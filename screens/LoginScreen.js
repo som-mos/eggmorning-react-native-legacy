@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
 
-export default function MypageScreen() {
+export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -21,12 +21,9 @@ export default function MypageScreen() {
         </View>
 
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.MypageScreenFilename]}>
-           <MonoText>screens/LoginScreen.js</MonoText>
+          <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
+            <MonoText>screens/LoginScreen.js</MonoText>
           </View>
 
           <Text style={styles.getStartedText}>
@@ -44,7 +41,7 @@ export default function MypageScreen() {
   );
 }
 
-MypageScreen.navigationOptions = {
+LoginScreen.navigationOptions = {
   header: null,
 };
 
@@ -112,7 +109,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 50,
   },
-  MypageScreenFilename: {
+  LoginScreenFilename: {
     marginVertical: 7,
   },
   codeHighlightText: {

@@ -20,7 +20,8 @@ export default function App(props) {
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator 
             screenOptions={{
-              headerShown: false
+              headerShown: false,
+              
             }}
           >
             <Stack.Screen name="Root" component={BottomTabNavigator} />
