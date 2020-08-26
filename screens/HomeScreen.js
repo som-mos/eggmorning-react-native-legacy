@@ -136,7 +136,7 @@ export default class HomeScreen extends React.Component{
                 </Grid>
               </SafeAreaView>
               <View style={styles.topListContainer}>
-      <Grid>
+      <Grid style={{ marginTop: 50, marginBottom:25}}>
         <Row style={styles.titleLine2}></Row>
         <Row style={{ height: 36, paddingLeft: 30}}> 
           <Text style={styles.textTitle}>Top5</Text>
@@ -270,7 +270,6 @@ export const styles = StyleSheet.create({
     width: "70%",
     paddingVertical: "center",
     height:12,
-    display:"block",
     flex:1,
     maxWidth:100,
   },
@@ -332,7 +331,7 @@ export const styles = StyleSheet.create({
   fontSize:18,
   marginRight:10,
   fontWeight:"bold",},
-  yellow:{ color:"yellow",
+  yellow:{ color:"orange",
   fontSize:18,
   marginRight:10,
   fontWeight:"bold",},
