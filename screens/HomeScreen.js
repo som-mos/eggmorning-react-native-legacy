@@ -268,7 +268,7 @@ export const styles = StyleSheet.create({
   },
   userRows: {
     width: "70%",
-    paddingVertical: "center",
+    // paddingVertical: "center",
     height:12,
     flex:1,
     maxWidth:100,
