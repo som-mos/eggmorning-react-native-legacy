@@ -1,11 +1,11 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import {Button, Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
 
-export default function MypageScreen({navigation}) {
+export default function SignUpScreen({navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -21,25 +21,20 @@ export default function MypageScreen({navigation}) {
         </View>
 
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.MypageScreenFilename]}>
-           <MonoText>screens/LoginScreen.js</MonoText>
+          <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
+            <MonoText>This is SignUp Page</MonoText>
+            <Button
+                title="Back To My Page"
+                onPress={() =>
+                    navigation.navigate('Mypage', { name: 'SomSom' })
+                }
+            />
           </View>
-          <Button
-              title="Go to Login Page"
-              onPress={() =>
-                  navigation.navigate('Login', { name: 'SomSom' })
-              }
-          />
-          <Button
-              title="Go to SignUp Page"
-              onPress={() =>
-                  navigation.navigate('SignUp', { name: 'EggMorning' })
-              }
-          />
+
+          <Text style={styles.getStartedText}>
+            Change any of the text, save the file, and your app will automatically reload.
+          </Text>
         </View>
 
         <View style={styles.helpContainer}>
@@ -52,7 +47,7 @@ export default function MypageScreen({navigation}) {
   );
 }
 
-MypageScreen.navigationOptions = {
+SignUpScreen.navigationOptions = {
   header: null,
 };
 
@@ -120,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 50,
   },
-  MypageScreenFilename: {
+  LoginScreenFilename: {
     marginVertical: 7,
   },
   codeHighlightText: {
