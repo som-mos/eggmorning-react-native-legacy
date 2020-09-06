@@ -1,48 +1,66 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import {Button, Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Button, Image, Platform, StyleSheet, Text, View, Form} from 'react-native';
+import { Col, Row, Grid } from "react-native-easy-grid";
 import { ScrollView } from 'react-native-gesture-handler';
-
+import BottomTabNavigator from '../navigation/BottomTabNavigator';
 import { MonoText } from '../components/StyledText';
+import { Input } from 'native-base';
 
 export default function LoginScreen({navigation}) {
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
+    <View style={styles.container}> 
+        <View style={styles.backButton}>
+           <Button
+                    title="< Back"
+                    onPress={() =>
+                        navigation.navigate('Mypage', { name: 'SomSom' })
+                    }
+                    color="transparent"
+                />
+        </View>  
+        <View style={styles.logoImgContainer}>
+         
           <Image
             source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
+                require('../img/logo.png')
             }
-            style={styles.welcomeImage}
+            style={styles.logoImage}
+          />
+          <Image
+            source={
+                require('../img/logo-text.png')
+            }
+            style={styles.logoImageT}
           />
         </View>
 
-        <View style={styles.getStartedContainer}>
+        <View style={styles.loginBottomContainer}>
 
           <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
-            <MonoText>This is Login Page</MonoText>
-            <Button
-                title="Back To My Page"
-                onPress={() =>
-                    navigation.navigate('Mypage', { name: 'SomSom' })
-                }
-            />
+            <Text style={styles.loginText}>LogIn</Text>
           </View>
+            <Grid style={{ overflow:'hidden', width: '90%', padding: '10%'}}>
+              <Row style={styles.loginRows}>
+                    <Text style={styles.inputText}>ID</Text>
+                    <Input placeholder="User ID" style={styles.inputStyle}></Input>
+              </Row>
+              <Row style={styles.loginRows}>
+                    <Text style={styles.inputText}>PW</Text>
+                    <Input placeholder="User PW" style={styles.inputStyle}></Input>
+              </Row>
+              </Grid>
+              <Grid>
+              <Row style={{width: 200, height: 50}}>
+                <Button title="LogIn" 
+                        onPress={() =>
+                        navigation.navigate('SignUp', { name: 'SomSom' })} 
+                        color="pink"
+                        />
+              </Row>
+            </Grid>
 
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
-          </Text>
         </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
     </View>
   );
 }
@@ -78,16 +96,11 @@ function handleLearnMorePress() {
   WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
 }
 
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'column',
+    backgroundColor: '#ffd5d4',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -99,38 +112,57 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30,
   },
-  welcomeContainer: {
+  logoImgContainer: {
+    position:'relative',
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
+    marginTop: 50,
+    height: '30%',
+    maxHeight:180,
+    flex:2,
+  }, 
+  logoImage: {
+    width:160,
     height: 80,
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10,
   },
-  getStartedContainer: {
+  logoImageT:{
+    width:160,
+    height: 40,
+    resizeMode: 'contain',
+    marginLeft: -10,
+  },
+   loginBottomContainer: {
     alignItems: 'center',
-    marginHorizontal: 50,
+    // marginHorizontal: 50,
+    height:'70%',
+    width:'100%',
+    margin:0,
+    padding:0,
+    flex:2,
+    backgroundColor:'#fff',
+    borderTopLeftRadius:50,
+    borderTopRightRadius:50
   },
   LoginScreenFilename: {
-    marginVertical: 7,
+    marginVertical: 24,
   },
   codeHighlightText: {
     color: 'rgba(96,100,109, 0.8)',
   },
   codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
+    paddingHorizontal: 10,
   },
   getStartedText: {
     fontSize: 17,
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
     textAlign: 'center',
+  },
+  loginText:{
+    fontSize: '2em',
+    textAlignVertical: 'center',
   },
   tabBarInfoContainer: {
     position: 'absolute',
@@ -157,6 +189,13 @@ const styles = StyleSheet.create({
     color: 'rgba(96,100,109, 1)',
     textAlign: 'center',
   },
+  backButton:{
+    position: 'absolute',
+    top:0,
+    left:0,
+    width:70,
+    height:15,
+  },
   navigationFilename: {
     marginTop: 5,
   },
@@ -167,8 +206,24 @@ const styles = StyleSheet.create({
   helpLink: {
     paddingVertical: 15,
   },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+  inputText: {
+    width:30,
+    lineHeight:30,
+    height:30,
+    textAlignVertical: 'center',
+    textAlign: 'right',
   },
+  inputStyle: {
+    height:30,
+    width:120,
+    marginLeft: 15,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 200,
+    borderBottomWidth: 1,
+  },
+  loginRows: {
+    maxHeight: 60,
+    width: '100%',
+  },
+
 });

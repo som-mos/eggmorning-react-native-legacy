@@ -13,8 +13,8 @@ export default function MypageScreen({navigation}) {
           <Image
             source={
               __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
+                ? require('../img/logo.png')
+                : require('../img/logo-text.png')
             }
             style={styles.welcomeImage}
           />

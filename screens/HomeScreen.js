@@ -11,8 +11,6 @@ import { Image, Platform, StyleSheet, TouchableOpacity, View, SafeAreaView,
   Dimensions} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button, DeckSwiper } from 'native-base';
-// import { MonoText } from '../components/StyledText';
-// import { SwipeRow } from 'native-base-theme/components';
 
 const hotelImeage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg"];
 const pageWidth = Dimensions.get("window").width;
@@ -115,8 +113,9 @@ export default class HomeScreen extends React.Component{
             <ScrollView style={{flex:1}}>
               <SafeAreaView style={styles.container}>
               <Grid>
+              {/* style={{maxHeight: 470}} */}
                   <Row style={styles.titleLine1}></Row>
-                  <Row style={{ height: 36, marginLeft: 30}}>
+                  <Row style={{ height: 36, marginLeft: 30, marginBottom: 25}}>
                     <Text style={styles.textTitle}>News</Text>
                   </Row>
                   <Row>
@@ -136,9 +135,9 @@ export default class HomeScreen extends React.Component{
                 </Grid>
               </SafeAreaView>
               <View style={styles.topListContainer}>
-      <Grid style={{ marginTop: 50, marginBottom:25}}>
+      <Grid style={{ marginBottom:25}}>
         <Row style={styles.titleLine2}></Row>
-        <Row style={{ height: 36, paddingLeft: 30}}> 
+        <Row style={{ height: 36, marginLeft: 30, marginBottom: 25}}> 
           <Text style={styles.textTitle}>Top5</Text>
         </Row>
         <Row>
