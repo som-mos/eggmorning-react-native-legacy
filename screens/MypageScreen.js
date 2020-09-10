@@ -12,9 +12,7 @@ export default function MypageScreen({navigation}) {
         <View style={styles.welcomeContainer}>
           <Image
             source={
-              __DEV__
-                ? require('../img/logo.png')
-                : require('../img/logo-text.png')
+             require('../img/logo.png')
             }
             style={styles.welcomeImage}
           />

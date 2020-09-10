@@ -1,53 +1,78 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import {Button, Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {Image, Platform, StyleSheet, Text, View } from 'react-native';
+import BottomTabNavigator from '../navigation/BottomTabNavigator';
+import { Input, Container, Header, Left, Body, Right, Button, Icon, Title, Form, Label, Item, Content } from 'native-base';
 
-import { MonoText } from '../components/StyledText';
-
-export default function SignUpScreen({navigation}) {
+export default function LoginScreen({navigation}) {
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
+    <Container>
+      <View style={styles.container}> 
+        <Header style={{backgroundColor:"transparent"}}>
+          <Left>
+            <Button transparent
+             onPress={() =>
+              navigation.navigate('Mypage', { name: 'SomSom' })
+            }>
+              <Icon name='arrow-back' />
+            </Button>
+          </Left>
+          <Body>
+            <Title></Title>
+          </Body>
+        </Header>
 
-        <View style={styles.getStartedContainer}>
+
+        {/* <View style={styles.logoImgContainer}>
+          <Image
+            source={require('../img/logo.png')}
+            style={styles.logoImage}
+          />
+          <Text style={styles.logoImageT}>Hello! Egg Morning</Text>
+        </View> */}
+
+        <View style={styles.loginBottomContainer}>
 
           <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
-            <MonoText>This is SignUp Page</MonoText>
-            <Button
-                title="Back To My Page"
-                onPress={() =>
-                    navigation.navigate('Mypage', { name: 'SomSom' })
-                }
-            />
+            <Text style={styles.loginText}>Sign Up</Text>
           </View>
-
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
-          </Text>
+          <Form>
+            <Item floatingLabel>
+                <Label>Username</Label>
+                <Input />
+                {/* <Icon name='close-circle' /> */}
+              </Item>
+              <Item floatingLabel last>
+                <Label>Password</Label>
+                <Input />
+                {/* <Icon name='close-circle' /> */}
+            </Item>
+            <Item floatingLabel last>
+                <Label>Check Password</Label>
+                <Input />
+                {/* <Icon name='close-circle' /> */}
+            </Item>
+            <Item floatingLabel last>
+                <Label>Phone</Label>
+                <Input />
+                {/* <Icon name='close-circle' /> */}
+            </Item>
+            <Item floatingLabel last>
+                <Label>E-mail</Label>
+                <Input />
+                {/* <Icon name='close-circle' /> */}
+            </Item>
+                  <Button bordered style={styles.loginBt}>
+                    <Text style={styles.loginBtTxt}> Sign Up </Text>
+                  </Button>
+        </Form>
         </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
     </View>
-  );
+    </Container>
+  ); 
 }
 
-SignUpScreen.navigationOptions = {
+LoginScreen.navigationOptions = {
   header: null,
 };
 
@@ -78,16 +103,11 @@ function handleLearnMorePress() {
   WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
 }
 
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'column',
+    backgroundColor: '#ffd5d4',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -99,38 +119,53 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30,
   },
-  welcomeContainer: {
+  logoImgContainer: {
+    position:'relative',
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
+    marginTop: 50,
+    height: '30%',
+    maxHeight:180,
+    flex:2,
+  }, 
+  logoImage: {
+    width:200,
     height: 80,
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10,
   },
-  getStartedContainer: {
+  logoImageT:{
+    marginLeft: -10,
+  },
+   loginBottomContainer: {
     alignItems: 'center',
-    marginHorizontal: 50,
+    height:'70%',
+    width:'100%',
+    margin:0,
+    padding:0,
+    flex:2,
+    backgroundColor:'#fff',
+    borderTopLeftRadius:50,
+    borderTopRightRadius:50
   },
   LoginScreenFilename: {
-    marginVertical: 7,
+    marginVertical: 24,
   },
   codeHighlightText: {
     color: 'rgba(96,100,109, 0.8)',
   },
   codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
+    paddingHorizontal: 10,
   },
   getStartedText: {
     fontSize: 17,
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
     textAlign: 'center',
+  },
+  loginText:{
+    fontSize: '2em',
+    textAlignVertical: 'center',
   },
   tabBarInfoContainer: {
     position: 'absolute',
@@ -157,6 +192,13 @@ const styles = StyleSheet.create({
     color: 'rgba(96,100,109, 1)',
     textAlign: 'center',
   },
+  backButton:{
+    position: 'absolute',
+    top:0,
+    left:0,
+    width:70,
+    height:15,
+  },
   navigationFilename: {
     marginTop: 5,
   },
@@ -167,8 +209,51 @@ const styles = StyleSheet.create({
   helpLink: {
     paddingVertical: 15,
   },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+  inputText: {
+    width:30,
+    lineHeight:30,
+    height:30,
+    textAlignVertical: 'center',
+    textAlign: 'right',
   },
+  inputStyle: {
+    height:30,
+    width:120,
+    marginLeft: 15,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 200,
+    borderBottomWidth: 1,
+  },
+  loginRows: {
+    maxHeight: 60,
+    width: '100%',
+  },
+  signUpRows:{
+    maxHeight: 60,
+    width: '100%',
+  },
+  loginBt:{
+    height: 50,
+    width: 200,
+    borderColor:"pink",
+    alignSelf:"center",
+    borderRadius:8,
+  },
+  loginBtTxt:{
+    color:"pink", 
+    alignSelf:"center", 
+    marginHorizontal:"auto",
+    marginBottom:5,
+    fontSize:20, 
+    // fontWeight:"400",
+  },
+  signUp:{
+    color:"blue",
+    marginHorizontal:"auto"
+  },
+  signUpBt:{
+    color:"blue",
+    fontWeight:"600"
+  },
+
 });

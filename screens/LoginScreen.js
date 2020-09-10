@@ -1,38 +1,37 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import {Button, Image, Platform, StyleSheet, Text, View, Form} from 'react-native';
+import {Image, Platform, StyleSheet, Text, View, Form} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { ScrollView } from 'react-native-gesture-handler';
 import BottomTabNavigator from '../navigation/BottomTabNavigator';
 import { MonoText } from '../components/StyledText';
-import { Input } from 'native-base';
+import { Input, Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
 export default function LoginScreen({navigation}) {
   return (
-    <View style={styles.container}> 
-        <View style={styles.backButton}>
-           <Button
-                    title="< Back"
-                    onPress={() =>
-                        navigation.navigate('Mypage', { name: 'SomSom' })
-                    }
-                    color="transparent"
-                />
-        </View>  
+    <Container>
+      <View style={styles.container}> 
+        <Header style={{backgroundColor:"transparent"}}>
+          <Left>
+            <Button transparent
+             onPress={() =>
+              navigation.navigate('Mypage', { name: 'SomSom' })
+            }>
+              <Icon name='arrow-back' />
+            </Button>
+          </Left>
+          <Body>
+            <Title></Title>
+          </Body>
+        </Header>
+
+
         <View style={styles.logoImgContainer}>
-         
           <Image
-            source={
-                require('../img/logo.png')
-            }
+            source={require('../img/logo.png')}
             style={styles.logoImage}
           />
-          <Image
-            source={
-                require('../img/logo-text.png')
-            }
-            style={styles.logoImageT}
-          />
+          <Text style={styles.logoImageT}>Hello! Egg Morning</Text>
         </View>
 
         <View style={styles.loginBottomContainer}>
@@ -49,20 +48,24 @@ export default function LoginScreen({navigation}) {
                     <Text style={styles.inputText}>PW</Text>
                     <Input placeholder="User PW" style={styles.inputStyle}></Input>
               </Row>
+              <Row style={styles.signUpRows}>
+                    <Text style={styles.signUp}>아직 계정이 없으신가요?
+                    <Text style={styles.signUpBt} onPress={() =>navigation.navigate('SignUp', { name: 'SomSom' })}>회원가입</Text></Text>
+              </Row>
               </Grid>
               <Grid>
-              <Row style={{width: 200, height: 50}}>
-                <Button title="LogIn" 
-                        onPress={() =>
-                        navigation.navigate('SignUp', { name: 'SomSom' })} 
-                        color="pink"
-                        />
+              <Row>
+              <Button primary style={styles.loginBt}  
+                >
+                <Text style={styles.loginBtTxt}> LogIn </Text>
+              </Button>
               </Row>
             </Grid>
 
         </View>
     </View>
-  );
+    </Container>
+  ); 
 }
 
 LoginScreen.navigationOptions = {
@@ -121,21 +124,17 @@ const styles = StyleSheet.create({
     flex:2,
   }, 
   logoImage: {
-    width:160,
+    width:200,
     height: 80,
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10,
   },
   logoImageT:{
-    width:160,
-    height: 40,
-    resizeMode: 'contain',
     marginLeft: -10,
   },
    loginBottomContainer: {
     alignItems: 'center',
-    // marginHorizontal: 50,
     height:'70%',
     width:'100%',
     margin:0,
@@ -224,6 +223,33 @@ const styles = StyleSheet.create({
   loginRows: {
     maxHeight: 60,
     width: '100%',
+  },
+  signUpRows:{
+    maxHeight: 60,
+    width: '100%',
+  },
+  loginBt:{
+    height: 50,
+    width: 200,
+    backgroundColor:"pink",
+    alignSelf:"center",
+    borderRadius:8,
+  },
+  loginBtTxt:{
+    color:"#fff", 
+    alignSelf:"center", 
+    marginHorizontal:"auto",
+    marginBottom:5,
+    fontSize:20, 
+    fontWeight:"400",
+  },
+  signUp:{
+    color:"blue",
+    marginHorizontal:"auto"
+  },
+  signUpBt:{
+    color:"blue",
+    fontWeight:"600"
   },
 
 });
