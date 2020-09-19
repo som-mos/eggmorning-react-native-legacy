@@ -11,7 +11,7 @@ export default function LoginScreen({navigation}) {
   return (
     <Container>
       <View style={styles.container}> 
-        <Header style={{backgroundColor:"transparent"}}>
+        <Header transparent>
           <Left>
             <Button transparent
              onPress={() =>
@@ -21,8 +21,9 @@ export default function LoginScreen({navigation}) {
             </Button>
           </Left>
           <Body>
-            <Title></Title>
+            {/* <Title>로그인</Title> */}
           </Body>
+          <Right />
         </Header>
 
 
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   loginText:{
-    fontSize: '2em',
+    fontSize: 32,
     textAlignVertical: 'center',
   },
   tabBarInfoContainer: {

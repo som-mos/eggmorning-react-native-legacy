@@ -1,72 +1,79 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import {Image, Platform, StyleSheet, Text, View } from 'react-native';
-import BottomTabNavigator from '../navigation/BottomTabNavigator';
-import { Input, Container, Header, Left, Body, Right, Button, Icon, Title, Form, Label, Item, Content } from 'native-base';
+import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item, Radio, } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({navigation, checked}) {
   return (
     <Container>
       <View style={styles.container}> 
-        <Header style={{backgroundColor:"transparent"}}>
+        <Header transparent>
           <Left>
             <Button transparent
              onPress={() =>
-              navigation.navigate('Mypage', { name: 'SomSom' })
+              navigation.navigate('Login', { name: 'SomSom' })
             }>
-              <Icon name='arrow-back' />
+              <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
             </Button>
           </Left>
           <Body>
-            <Title></Title>
+            {/* <Title>회원가입</Title> */}
           </Body>
+          <Right />
         </Header>
-
-
-        {/* <View style={styles.logoImgContainer}>
-          <Image
-            source={require('../img/logo.png')}
-            style={styles.logoImage}
-          />
-          <Text style={styles.logoImageT}>Hello! Egg Morning</Text>
-        </View> */}
-
-        <View style={styles.loginBottomContainer}>
-
-          <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
-            <Text style={styles.loginText}>Sign Up</Text>
-          </View>
-          <Form>
-            <Item floatingLabel>
-                <Label>Username</Label>
-                <Input />
-                {/* <Icon name='close-circle' /> */}
-              </Item>
-              <Item floatingLabel last>
-                <Label>Password</Label>
-                <Input />
-                {/* <Icon name='close-circle' /> */}
-            </Item>
-            <Item floatingLabel last>
-                <Label>Check Password</Label>
-                <Input />
-                {/* <Icon name='close-circle' /> */}
-            </Item>
-            <Item floatingLabel last>
-                <Label>Phone</Label>
-                <Input />
-                {/* <Icon name='close-circle' /> */}
-            </Item>
-            <Item floatingLabel last>
-                <Label>E-mail</Label>
-                <Input />
-                {/* <Icon name='close-circle' /> */}
-            </Item>
-                  <Button bordered style={styles.loginBt}>
-                    <Text style={styles.loginBtTxt}> Sign Up </Text>
+            
+            <View style={styles.loginBottomContainer}>
+              <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
+                <Text style={styles.loginText}>Sign Up</Text>
+              </View>
+              <Form>
+                <Item floatingLabel last>
+                    <Label style={styles.labelSt}>Username</Label>
+                    <Input />
+                    {/* <Icon name='close-circle' /> */}
+                  </Item>
+                  <Item floatingLabel last>
+                    <Label style={styles.labelSt}>Password</Label>
+                    <Input />
+                    {/* <Icon name='close-circle' /> */}
+                </Item>
+                <Item floatingLabel last>
+                    <Label style={styles.labelSt}>Check Password</Label>
+                    <Input />
+                </Item>
+                    {/* <Icon name='close-circle' /> */}
+                <Grid>
+                  <Col style={styles.listStyle} noBorder={true}>
+                  <Button bordered
+                  style={{borderColor:"pink", width:"90%"}}
+                  >
+                    <Icon type="FontAwesome5" name="male" style={{color:"pink"}}/>
+                    <Text style={{color:"pink", textAlign:"center"}}>Male</Text>
                   </Button>
-        </Form>
-        </View>
+                  </Col>
+                  <Col style={styles.listStyle} noBorder={true}>
+                    <Row>
+                    <Radio />
+                    <Text>FeMale</Text>
+                    </Row>
+                  </Col>
+                </Grid>
+                <Item floatingLabel last>
+                    <Label style={styles.labelSt}>Phone</Label>
+                    <Input />
+                    {/* <Icon name='close-circle' /> */}
+                </Item>
+                <Item floatingLabel last>
+                    <Label style={styles.labelSt}>E-mail</Label>
+                    <Input />
+                    {/* <Icon name='close-circle' /> */}
+                </Item>
+                      <Button rounded style={styles.signupBt}>
+                        <Text style={styles.signupBtTxt}> Sign Up </Text>
+                      </Button>
+                </Form>
+            </View>
     </View>
     </Container>
   ); 
@@ -139,7 +146,9 @@ const styles = StyleSheet.create({
   },
    loginBottomContainer: {
     alignItems: 'center',
-    height:'70%',
+    position:"fixed",
+    bottom:0,
+    height:'85%',
     width:'100%',
     margin:0,
     padding:0,
@@ -164,7 +173,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   loginText:{
-    fontSize: '2em',
+    marginTop:"2vh",
+    fontSize: 32,
     textAlignVertical: 'center',
   },
   tabBarInfoContainer: {
@@ -232,20 +242,23 @@ const styles = StyleSheet.create({
     maxHeight: 60,
     width: '100%',
   },
-  loginBt:{
+  signupBt:{
     height: 50,
     width: 200,
     borderColor:"pink",
     alignSelf:"center",
     borderRadius:8,
+    backgroundColor:"pink",
+    position:"fixed",
+    bottom:"5vh",
   },
-  loginBtTxt:{
-    color:"pink", 
-    alignSelf:"center", 
+  signupBtTxt:{
+    color:"#fff", 
+    alignSelf:"center",
+    textAlign:"center",
     marginHorizontal:"auto",
     marginBottom:5,
     fontSize:20, 
-    // fontWeight:"400",
   },
   signUp:{
     color:"blue",
@@ -254,6 +267,13 @@ const styles = StyleSheet.create({
   signUpBt:{
     color:"blue",
     fontWeight:"600"
+  },
+  labelSt:{
+    color:"pink"
+  },
+  listStyle:{
+    // width: "50%",
+
   },
 
 });
