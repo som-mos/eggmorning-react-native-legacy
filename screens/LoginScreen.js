@@ -3,7 +3,6 @@ import * as React from 'react';
 import {Image, Platform, StyleSheet, Text, View, Form} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { ScrollView } from 'react-native-gesture-handler';
-import BottomTabNavigator from '../navigation/BottomTabNavigator';
 import { MonoText } from '../components/StyledText';
 import { Input, Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
@@ -13,11 +12,11 @@ export default function LoginScreen({navigation}) {
       <View style={styles.container}> 
         <Header transparent>
           <Left>
-            <Button transparent
+          <Button transparent
              onPress={() =>
-              navigation.navigate('Mypage', { name: 'SomSom' })
+              navigation.navigate('Mypage', { name: 'mypage' })
             }>
-              <Icon name='arrow-back' />
+              <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
             </Button>
           </Left>
           <Body>

@@ -4,7 +4,7 @@ import {Image, Platform, StyleSheet, Text, View } from 'react-native';
 import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item, Radio, } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
-export default function LoginScreen({navigation, checked}) {
+export default function signUpScreen({navigation, checked}) {
   return (
     <Container>
       <View style={styles.container}> 
@@ -24,7 +24,7 @@ export default function LoginScreen({navigation, checked}) {
         </Header>
             
             <View style={styles.loginBottomContainer}>
-              <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
+              <View style={[styles.codeHighlightContainer, styles.signUpScreenFilename]}>
                 <Text style={styles.loginText}>Sign Up</Text>
               </View>
               <Form>
@@ -79,7 +79,7 @@ export default function LoginScreen({navigation, checked}) {
   ); 
 }
 
-LoginScreen.navigationOptions = {
+signUpScreen.navigationOptions = {
   header: null,
 };
 
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius:50,
     borderTopRightRadius:50
   },
-  LoginScreenFilename: {
+  signUpScreenFilename: {
     marginVertical: 24,
   },
   codeHighlightText: {

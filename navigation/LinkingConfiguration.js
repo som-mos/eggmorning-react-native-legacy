@@ -12,6 +12,7 @@ export default {
         Mypage: 'mypage',
         More: 'more',
         Login: 'login',
+        Signup: 'signup',
       },
     },
   },
