@@ -1,10 +1,10 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import {Image, Platform, StyleSheet, Text, View, Form} from 'react-native';
+import {Image, Platform, StyleSheet, View} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
-import { Input, Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import { Input, Container, Header, Left, Body, Right, Text, Button, Icon, Content, Form, Item, Label} from 'native-base';
 
 export default function LoginScreen({navigation}) {
   return (
@@ -39,29 +39,29 @@ export default function LoginScreen({navigation}) {
           <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
             <Text style={styles.loginText}>LogIn</Text>
           </View>
-            <Grid style={{ overflow:'hidden', width: '90%', padding: '10%'}}>
-              <Row style={styles.loginRows}>
-                    <Text style={styles.inputText}>ID</Text>
-                    <Input placeholder="User ID" style={styles.inputStyle}></Input>
-              </Row>
-              <Row style={styles.loginRows}>
-                    <Text style={styles.inputText}>PW</Text>
-                    <Input placeholder="User PW" style={styles.inputStyle}></Input>
-              </Row>
-              <Row style={styles.signUpRows}>
+            <Form>
+                <Item floatingLabel>
+                  <Label style={{color:"pink"}}>Username</Label>
+                  <Input />
+                </Item>
+                <Item floatingLabel>
+                  <Label style={{color:"pink"}}>Password</Label>
+                  <Input />
+                </Item>
+                <View style={{flex:1}}>
+                  <View style={{flex:2, flexDirection:"column"}}>
+                    <Right>
                     <Text style={styles.signUp}>아직 계정이 없으신가요?
-                    <Text style={styles.signUpBt} onPress={() =>navigation.navigate('SignUp', { name: 'SomSom' })}>회원가입</Text></Text>
-              </Row>
-              </Grid>
-              <Grid>
-              <Row>
-              <Button primary style={styles.loginBt}  
-                >
-                <Text style={styles.loginBtTxt}> LogIn </Text>
-              </Button>
-              </Row>
-            </Grid>
-
+                    <Text style={styles.signUpBt} onPress={() =>navigation.navigate('SignUp', { name: 'SomSom' })}> 회원가입</Text></Text>
+                    </Right>
+                  </View>
+                  <View style={{flex:2, flexDirection:"column"}}>
+                    <Button full style={styles.loginBt}>
+                    <Text style={styles.loginBtTxt}>LogIn</Text>
+                    </Button>
+                  </View>
+                </View>
+            </Form>
         </View>
     </View>
     </Container>
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   logoImgContainer: {
     position:'relative',
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 40,
     height: '30%',
     maxHeight:180,
     flex:2,
@@ -132,6 +132,9 @@ const styles = StyleSheet.create({
   },
   logoImageT:{
     marginLeft: -10,
+    color:"#ffffff",
+    fontSize:20,
+    fontWeight:'600'
   },
    loginBottomContainer: {
     alignItems: 'center',
@@ -145,7 +148,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius:50
   },
   LoginScreenFilename: {
-    marginVertical: 24,
+    marginVertical: 20,
   },
   codeHighlightText: {
     color: 'rgba(96,100,109, 0.8)',
@@ -160,8 +163,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   loginText:{
-    fontSize: 32,
-    textAlignVertical: 'center',
+    fontSize: 20,
+    color:"#7a7a7a",
+    fontWeight:'600',
+    marginTop:30
   },
   tabBarInfoContainer: {
     position: 'absolute',
@@ -188,23 +193,10 @@ const styles = StyleSheet.create({
     color: 'rgba(96,100,109, 1)',
     textAlign: 'center',
   },
-  backButton:{
-    position: 'absolute',
-    top:0,
-    left:0,
-    width:70,
-    height:15,
-  },
   navigationFilename: {
     marginTop: 5,
   },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
+
   inputText: {
     width:30,
     lineHeight:30,
@@ -221,35 +213,32 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   loginRows: {
-    maxHeight: 60,
-    width: '100%',
+    flex:1,
+    flexDirection:"row",
+    paddingLeft:10,
+    paddingRight:10
   },
-  signUpRows:{
-    maxHeight: 60,
-    width: '100%',
-  },
+
   loginBt:{
     height: 50,
-    width: 200,
+    width: 250,
     backgroundColor:"pink",
-    alignSelf:"center",
     borderRadius:8,
   },
   loginBtTxt:{
-    color:"#fff", 
-    alignSelf:"center", 
-    marginHorizontal:"auto",
-    marginBottom:5,
+    color:"#fff",
     fontSize:20, 
-    fontWeight:"400",
+    fontWeight:"400"
   },
   signUp:{
-    color:"blue",
-    marginHorizontal:"auto"
+    color:"#ff5e92",
+    fontSize:12,
+    marginTop:15,
   },
   signUpBt:{
-    color:"blue",
-    fontWeight:"600"
+    color:"#ff5e92",
+    fontSize:14,
+    fontWeight:"600",
   },
 
 });

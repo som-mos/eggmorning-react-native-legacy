@@ -1,7 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import {Image, Platform, StyleSheet, Text, View } from 'react-native';
-import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item, Radio, } from 'native-base';
+import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item, Radio } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 export default function signUpScreen({navigation, checked}) {
@@ -28,29 +28,29 @@ export default function signUpScreen({navigation, checked}) {
                 <Text style={styles.loginText}>Sign Up</Text>
               </View>
               <Form>
-                <Item floatingLabel last>
+                <Item floatingLabel>
                     <Label style={styles.labelSt}>Username</Label>
                     <Input />
                     {/* <Icon name='close-circle' /> */}
                   </Item>
-                  <Item floatingLabel last>
+                  <Item floatingLabel>
                     <Label style={styles.labelSt}>Password</Label>
                     <Input />
                     {/* <Icon name='close-circle' /> */}
                 </Item>
-                <Item floatingLabel last>
+                <Item floatingLabel>
                     <Label style={styles.labelSt}>Check Password</Label>
                     <Input />
                 </Item>
                     {/* <Icon name='close-circle' /> */}
                 <Grid>
                   <Col style={styles.listStyle} noBorder={true}>
-                  <Button bordered
+                  <Radio bordered
                   style={{borderColor:"pink", width:"90%"}}
                   >
                     <Icon type="FontAwesome5" name="male" style={{color:"pink"}}/>
                     <Text style={{color:"pink", textAlign:"center"}}>Male</Text>
-                  </Button>
+                  </Radio>
                   </Col>
                   <Col style={styles.listStyle} noBorder={true}>
                     <Row>
@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
   },
    loginBottomContainer: {
     alignItems: 'center',
-    position:"fixed",
     bottom:0,
     height:'85%',
     width:'100%',
@@ -173,9 +172,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   loginText:{
-    marginTop:"2vh",
-    fontSize: 32,
-    textAlignVertical: 'center',
+    fontSize: 20,
+    color:"#7a7a7a",
+    fontWeight:'600',
+    marginTop:30
   },
   tabBarInfoContainer: {
     position: 'absolute',
@@ -202,22 +202,8 @@ const styles = StyleSheet.create({
     color: 'rgba(96,100,109, 1)',
     textAlign: 'center',
   },
-  backButton:{
-    position: 'absolute',
-    top:0,
-    left:0,
-    width:70,
-    height:15,
-  },
   navigationFilename: {
     marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
   },
   inputText: {
     width:30,
@@ -244,13 +230,12 @@ const styles = StyleSheet.create({
   },
   signupBt:{
     height: 50,
-    width: 200,
+    width: 250,
     borderColor:"pink",
     alignSelf:"center",
     borderRadius:8,
     backgroundColor:"pink",
-    position:"fixed",
-    bottom:"5vh",
+    // bottom:"5vh",
   },
   signupBtTxt:{
     color:"#fff", 
