@@ -33,7 +33,7 @@ export default function MypageScreen({navigation}) {
           <Button
               title="Go to SignUp Page"
               onPress={() =>
-                  navigation.navigate('SignUp', { name: 'EggMorning' })
+                  navigation.navigate('SignUp', { name: 'SignUp' })
               }
           />
         </View>

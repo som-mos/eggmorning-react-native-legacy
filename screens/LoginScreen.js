@@ -11,7 +11,7 @@ export default function LoginScreen({navigation}) {
           <Left>
           <Button transparent
              onPress={() =>
-              navigation.navigate('Root', { screen: 'Mypage' })
+              navigation.goBack()
             }>
               <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
             </Button>
@@ -21,19 +21,17 @@ export default function LoginScreen({navigation}) {
           </Body>
           <Right />
         </Header>
-
-
         <View style={styles.logoImgContainer}>
           <Image
             source={require('../img/logo.png')}
             style={styles.logoImage}
           />
-          <Text style={styles.logoImageT}>Hello! Egg Morning</Text>
+          <Text style={styles.logoImageT}>Hello, Egg Morning!</Text>
         </View>
 
         <View style={styles.loginBottomContainer}>
 
-          <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
+        <View style={[styles.codeHighlightContainer, styles.LoginScreenFilename]}>
             <Text style={styles.loginText}>LogIn</Text>
           </View>
             <Form>
@@ -48,13 +46,13 @@ export default function LoginScreen({navigation}) {
                 <View style={{flex:1}}>
                   <View style={{flex:2, flexDirection:"column"}}>
                     <Right>
-                    <Text style={styles.signUp}>아직 계정이 없으신가요?
-                    <Text style={styles.signUpBt} onPress={() =>navigation.navigate('SignUp', { name: 'SomSom' })}> 회원가입</Text></Text>
+                      <Text style={styles.signUp}>아직 계정이 없으신가요?
+                      <Text style={styles.signUpBt} onPress={() =>navigation.navigate('SignUp', { name: 'SignUp' })}> 회원가입</Text></Text>
                     </Right>
                   </View>
                   <View style={{flex:2, flexDirection:"column"}}>
                     <Button full style={styles.loginBt}>
-                    <Text style={styles.loginBtTxt}>LogIn</Text>
+                      <Text style={styles.loginBtTxt}>LogIn</Text>
                     </Button>
                   </View>
                 </View>
@@ -69,32 +67,32 @@ LoginScreen.navigationOptions = {
   header: null,
 };
 
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
+// function DevelopmentModeNotice() {
+//   if (__DEV__) {
+//     const learnMoreButton = (
+//       <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
+//         Learn more
+//       </Text>
+//     );
 
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
+//     return (
+//       <Text style={styles.developmentModeText}>
+//         Development mode is enabled: your app will be slower but you can use useful development
+//         tools. {learnMoreButton}
+//       </Text>
+//     );
+//   } else {
+//     return (
+//       <Text style={styles.developmentModeText}>
+//         You are not in development mode: your app will run at full speed.
+//       </Text>
+//     );
+//   }
+// }
 
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-}
+// function handleLearnMorePress() {
+//   WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
+// }
 
 const styles = StyleSheet.create({
   container: {
@@ -144,14 +142,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius:50,
     borderTopRightRadius:50
   },
-  LoginScreenFilename: {
-    marginVertical: 20,
-  },
   codeHighlightText: {
     color: 'rgba(96,100,109, 0.8)',
   },
   codeHighlightContainer: {
     paddingHorizontal: 10,
+    paddingTop:20,
   },
   getStartedText: {
     fontSize: 17,
@@ -221,7 +217,7 @@ const styles = StyleSheet.create({
     width: 250,
     backgroundColor:"pink",
     borderRadius:8,
-    marginTop:50,
+    marginTop:25,
     marginBottom:25,
   },
   loginBtTxt:{

@@ -29,7 +29,7 @@ export default function signUpScreen({navigation, checked}) {
           <Left>
             <Button transparent
              onPress={() =>
-              navigation.navigate('Login')
+              navigation.goBack()
             }>
               <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
             </Button>
@@ -73,9 +73,12 @@ export default function signUpScreen({navigation, checked}) {
                     <Input />
                     {/* <Icon name='close-circle' /> */}
                 </Item>
+                  <View style={{flex:1}}>
                       <Button rounded style={styles.signupBt}>
-                        <Text style={styles.signupBtTxt}> Sign Up </Text>
+                        <Text style={styles.signupBtTxt}>Sign Up</Text>
                       </Button>
+                  </View>
+                     
                 </Form>
             </View>
     </View>
@@ -235,28 +238,16 @@ const styles = StyleSheet.create({
   signupBt:{
     height: 50,
     width: 250,
-    borderColor:"pink",
-    alignSelf:"center",
-    borderRadius:8,
     backgroundColor:"pink",
-    marginTop:50,
+    borderRadius:8,
+    marginTop:35,
     marginBottom:25,
   },
   signupBtTxt:{
-    color:"#fff", 
-    alignSelf:"center",
-    textAlign:"center",
-    marginHorizontal:"auto",
-    marginBottom:5,
+    color:"#fff",
     fontSize:20, 
-  },
-  signUp:{
-    color:"blue",
-    marginHorizontal:"auto"
-  },
-  signUpBt:{
-    color:"blue",
-    fontWeight:"600"
+    fontWeight:"400",
+
   },
   labelSt:{
     color:"#bebbbf"
@@ -266,12 +257,10 @@ const styles = StyleSheet.create({
     fontSize:16,
   },
   radioBt: {
-    flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center'
-    alignItems:'stretch',
+    // flex: 1,
     marginLeft:15,
     marginRight: 15,
     marginTop:25,
+    marginBottom:0,
   }
 });

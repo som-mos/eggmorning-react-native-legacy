@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 	},
     radioText: {
         marginLeft: 35,
-        fontSize: '1rem',
+        fontSize: 14,
         color: '#bebbbf',
         fontWeight: '400'
     },
