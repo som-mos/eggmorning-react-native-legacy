@@ -1,9 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import {Image, Platform, StyleSheet, View} from 'react-native';
-import { Col, Row, Grid } from "react-native-easy-grid";
-import { ScrollView } from 'react-native-gesture-handler';
-import { MonoText } from '../components/StyledText';
 import { Input, Container, Header, Left, Body, Right, Text, Button, Icon, Content, Form, Item, Label} from 'native-base';
 
 export default function LoginScreen({navigation}) {
@@ -14,7 +11,7 @@ export default function LoginScreen({navigation}) {
           <Left>
           <Button transparent
              onPress={() =>
-              navigation.navigate('Mypage', { name: 'mypage' })
+              navigation.navigate('Root', { screen: 'Mypage' })
             }>
               <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
             </Button>
@@ -224,6 +221,8 @@ const styles = StyleSheet.create({
     width: 250,
     backgroundColor:"pink",
     borderRadius:8,
+    marginTop:50,
+    marginBottom:25,
   },
   loginBtTxt:{
     color:"#fff",

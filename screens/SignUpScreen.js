@@ -2,9 +2,26 @@ import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import {Image, Platform, StyleSheet, Text, View } from 'react-native';
 import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item, Radio } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import RadioButton from '../components/RadioButton';
+
+const PROP = [
+  {
+    key: 'Male',
+    text: 'Male',
+  },
+  {
+    key: 'Female',
+    text: 'Female',
+  },
+  {
+    key: 'None',
+    text: 'None',
+  },
+
+];
 
 export default function signUpScreen({navigation, checked}) {
+  
   return (
     <Container>
       <View style={styles.container}> 
@@ -12,7 +29,7 @@ export default function signUpScreen({navigation, checked}) {
           <Left>
             <Button transparent
              onPress={() =>
-              navigation.navigate('Login', { name: 'SomSom' })
+              navigation.navigate('Login')
             }>
               <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
             </Button>
@@ -22,7 +39,6 @@ export default function signUpScreen({navigation, checked}) {
           </Body>
           <Right />
         </Header>
-            
             <View style={styles.loginBottomContainer}>
               <View style={[styles.codeHighlightContainer, styles.signUpScreenFilename]}>
                 <Text style={styles.loginText}>Sign Up</Text>
@@ -43,22 +59,10 @@ export default function signUpScreen({navigation, checked}) {
                     <Input />
                 </Item>
                     {/* <Icon name='close-circle' /> */}
-                <Grid>
-                  <Col style={styles.listStyle} noBorder={true}>
-                  <Radio bordered
-                  style={{borderColor:"pink", width:"90%"}}
-                  >
-                    <Icon type="FontAwesome5" name="male" style={{color:"pink"}}/>
-                    <Text style={{color:"pink", textAlign:"center"}}>Male</Text>
-                  </Radio>
-                  </Col>
-                  <Col style={styles.listStyle} noBorder={true}>
-                    <Row>
-                    <Radio />
-                    <Text>FeMale</Text>
-                    </Row>
-                  </Col>
-                </Grid>
+                    <View style={styles.radioBt}>
+                      <Text style={styles.titleSt}>Gender</Text>
+                      <RadioButton PROP={PROP} />
+                    </View>
                 <Item floatingLabel last>
                     <Label style={styles.labelSt}>Phone</Label>
                     <Input />
@@ -83,32 +87,32 @@ signUpScreen.navigationOptions = {
   header: null,
 };
 
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
+// function DevelopmentModeNotice() {
+//   if (__DEV__) {
+//     const learnMoreButton = (
+//       <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
+//         Learn more
+//       </Text>
+//     );
 
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
+//     return (
+//       <Text style={styles.developmentModeText}>
+//         Development mode is enabled: your app will be slower but you can use useful development
+//         tools. {learnMoreButton}
+//       </Text>
+//     );
+//   } else {
+//     return (
+//       <Text style={styles.developmentModeText}>
+//         You are not in development mode: your app will run at full speed.
+//       </Text>
+//     );
+//   }
+// }
 
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-}
+// function handleLearnMorePress() {
+//   WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
+// }
 
 const styles = StyleSheet.create({
   container: {
@@ -157,7 +161,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius:50
   },
   signUpScreenFilename: {
-    marginVertical: 24,
+    paddingVertical: 14,
   },
   codeHighlightText: {
     color: 'rgba(96,100,109, 0.8)',
@@ -235,7 +239,8 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     borderRadius:8,
     backgroundColor:"pink",
-    // bottom:"5vh",
+    marginTop:50,
+    marginBottom:25,
   },
   signupBtTxt:{
     color:"#fff", 
@@ -254,11 +259,19 @@ const styles = StyleSheet.create({
     fontWeight:"600"
   },
   labelSt:{
-    color:"pink"
+    color:"#bebbbf"
   },
-  listStyle:{
-    // width: "50%",
-
+  titleSt:{
+    color:"#bebbbf",
+    fontSize:16,
   },
-
+  radioBt: {
+    flex: 1,
+    // alignItems: 'center',
+    // justifyContent: 'center'
+    alignItems:'stretch',
+    marginLeft:15,
+    marginRight: 15,
+    marginTop:25,
+  }
 });
