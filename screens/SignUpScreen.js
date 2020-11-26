@@ -74,7 +74,7 @@ export default function signUpScreen({navigation, checked}) {
                     {/* <Icon name='close-circle' /> */}
                 </Item>
                   <View style={{flex:1}}>
-                      <Button rounded style={styles.signupBt}>
+                      <Button full style={styles.signupBt}>
                         <Text style={styles.signupBtTxt}>Sign Up</Text>
                       </Button>
                   </View>
