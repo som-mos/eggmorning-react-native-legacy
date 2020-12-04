@@ -8,7 +8,7 @@ Egg Morning is a mobile app service for booking hotel breakfast packages.
 You can start with this following:
 
 ```
-> git clone https://github.com/2019somsom/som-react-native.git
+> git clone https://github.com/2019somsom/eggmorning-react-native.git
 > cd som-react-native
 > npm install
 > npm start
@@ -19,6 +19,19 @@ You can start with this following:
 >   > 2. Expo
 >   > 3. Native-Base
 
+
+
+## Structure
+eggmorning-react-native //this project name
+>App.js
+>screens
+>>BookmarkScreen.js // Bookmark Menu
+>>HomeScreens.js    // Home Menu
+>>LoginScreen.js    // Login Menu
+>>MoreScreen.js     // More Menu
+>>MypageScreen.js   // My Page Menu
+>>>SearchScreen.js   // Search Page
+>>>SignUpScreen.js   // Sign Up Page
 
 
 ## Contributing

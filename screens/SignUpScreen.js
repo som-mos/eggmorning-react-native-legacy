@@ -1,5 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
+import axios from 'axios';
 import {Image, Platform, StyleSheet, Text, View } from 'react-native';
 import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item, Radio } from 'native-base';
 import RadioButton from '../components/RadioButton';
@@ -8,20 +9,45 @@ const PROP = [
   {
     key: 'Male',
     text: 'Male',
+    nemr: 'male',
   },
   {
     key: 'Female',
     text: 'Female',
+    nemr: 'female',
   },
   {
     key: 'None',
     text: 'None',
+    nemr: 'none',
   },
 
 ];
 
 export default function signUpScreen({navigation, checked}) {
-  
+  state = {
+    name: '', 
+  }
+
+
+
+  handleChange = event => {
+    this.setState({ name: event.target.value });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const user = {
+      name: this.state.name
+    };
+    axios.post(`http://54.180.155.194:8000/eggmorning/user`, { user })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
+
   return (
     <Container>
       <View style={styles.container}> 
@@ -43,38 +69,40 @@ export default function signUpScreen({navigation, checked}) {
               <View style={[styles.codeHighlightContainer, styles.signUpScreenFilename]}>
                 <Text style={styles.loginText}>Sign Up</Text>
               </View>
-              <Form>
+              <Form onSubmit={this.handleSubmit}>
                 <Item floatingLabel>
-                    <Label style={styles.labelSt}>Username</Label>
-                    <Input />
+                    <Label style={styles.labelSt}>E-mail (ID)</Label>
+                    <Input type="text" name="email" onChange={this.handleChange} />
+                    {/* <Icon name='close-circle' /> */}
+                </Item>
+                <Item floatingLabel>
+                    <Label style={styles.labelSt}>Nickname</Label>
+                    <Input type="text" name="nickname" onChange={this.handleChange}/>
                     {/* <Icon name='close-circle' /> */}
                   </Item>
                   <Item floatingLabel>
                     <Label style={styles.labelSt}>Password</Label>
-                    <Input />
+                    <Input type="text" name="password" onChange={this.handleChange}/>
                     {/* <Icon name='close-circle' /> */}
                 </Item>
                 <Item floatingLabel>
                     <Label style={styles.labelSt}>Check Password</Label>
-                    <Input />
+                    <Input type="text" name="password-check" onChange={this.handleChange}/>
+                </Item>
+                <Item floatingLabel>
+                    <Label style={styles.labelSt}>Phone</Label>
+                    <Input type="text" name="phone" onChange={this.handleChange}/>
+                    {/* <Icon name='close-circle' /> */}
                 </Item>
                     {/* <Icon name='close-circle' /> */}
                     <View style={styles.radioBt}>
                       <Text style={styles.titleSt}>Gender</Text>
                       <RadioButton PROP={PROP} />
                     </View>
-                <Item floatingLabel last>
-                    <Label style={styles.labelSt}>Phone</Label>
-                    <Input />
-                    {/* <Icon name='close-circle' /> */}
-                </Item>
-                <Item floatingLabel last>
-                    <Label style={styles.labelSt}>E-mail</Label>
-                    <Input />
-                    {/* <Icon name='close-circle' /> */}
-                </Item>
+                
+                
                   <View style={{flex:1}}>
-                      <Button full style={styles.signupBt}>
+                      <Button full style={styles.signupBt} type="submit">
                         <Text style={styles.signupBtTxt}>Sign Up</Text>
                       </Button>
                   </View>
