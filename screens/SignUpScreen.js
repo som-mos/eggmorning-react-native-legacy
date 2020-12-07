@@ -9,17 +9,17 @@ const PROP = [
   {
     key: 'Male',
     text: 'Male',
-    nemr: 'male',
+    name: 'male',
   },
   {
     key: 'Female',
     text: 'Female',
-    nemr: 'female',
+    name: 'female',
   },
   {
     key: 'None',
     text: 'None',
-    nemr: 'none',
+    name: 'none',
   },
 
 ];

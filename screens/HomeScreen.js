@@ -1,21 +1,37 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
+import axios from 'axios';
 import { useRef } from 'react';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Carousel from 'react-native-snap-carousel';
-import { Image, Platform, StyleSheet, TouchableOpacity, View, SafeAreaView,
+import { Image, Platform, StyleSheet, View, SafeAreaView,
   ImageBackground,
   Animated,
   useWindowDimensions, 
   ImageBackgroundComponent,
   Dimensions} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button, DeckSwiper } from 'native-base';
+import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button } from 'native-base';
 
 const hotelImeage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg"];
 const pageWidth = Dimensions.get("window").width;
 
 export default class HomeScreen extends React.Component{
+  state = {
+    isLoading: true,
+    slides:[],
+  };
+  getSlides = async () => {
+    const slides = await axios.get("http://54.180.155.194:8000/eggmorning/main/slide");
+  console.log(slides);
+  }
+  getHotels = async () => {
+    const hotels = await axios.get("http://54.180.155.194:8000/eggmorning/hotel");
+  }
+    
+  componentDidMount() {
+    this.getSlides();
+  }
     constructor(props){
         super(props);
         this.state = {
@@ -108,6 +124,7 @@ export default class HomeScreen extends React.Component{
     }
 
     render() {
+      const { isLoading } = this.state;
         return (
           <Container>
             <ScrollView style={{flex:1}}>
@@ -117,6 +134,7 @@ export default class HomeScreen extends React.Component{
                   <Row style={styles.titleLine1}></Row>
                   <Row style={{ height: 36, marginLeft: 30, marginBottom: 25}}>
                     <Text style={styles.textTitle}>News</Text>
+                    <Text style={styles.textTitle}>{ isLoading ? "Loading..." : "We Are Ready" }</Text>
                   </Row>
                   <Row>
                 <View style={styles.scrollContainer}>
