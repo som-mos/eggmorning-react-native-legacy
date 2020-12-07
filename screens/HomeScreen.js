@@ -1,15 +1,10 @@
-import * as WebBrowser from 'expo-web-browser';
+// import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import axios from 'axios';
-import { useRef } from 'react';
+// import { useEffect } from 'react';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Carousel from 'react-native-snap-carousel';
-import { Image, Platform, StyleSheet, View, SafeAreaView,
-  ImageBackground,
-  Animated,
-  useWindowDimensions, 
-  ImageBackgroundComponent,
-  Dimensions} from 'react-native';
+import { Image, StyleSheet, View, SafeAreaView, ImageBackground, Dimensions} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button } from 'native-base';
 
@@ -18,17 +13,23 @@ const pageWidth = Dimensions.get("window").width;
 
 export default class HomeScreen extends React.Component{
   state = {
-    isLoading: true,
+    // isLoading: true,
     slides:[],
   };
+  
   getSlides = async () => {
-    const slides = await axios.get("http://54.180.155.194:8000/eggmorning/main/slide");
-  console.log(slides);
-  }
-  getHotels = async () => {
-    const hotels = await axios.get("http://54.180.155.194:8000/eggmorning/hotel");
-  }
-    
+    const {
+      data: {
+        data: { movies },
+      },
+    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  this.setState({ movies });
+  };
+
+  // getHotels = async () => {
+  //   const hotels = await axios.get("http://54.180.155.194:8000/eggmorning/hotel");
+  // }
+
   componentDidMount() {
     this.getSlides();
   }
