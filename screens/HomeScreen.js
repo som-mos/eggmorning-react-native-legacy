@@ -15,6 +15,7 @@ export default class HomeScreen extends React.Component{
   state = {
     // isLoading: true,
     slides:[],
+    hotels:[],
   };
   
   getSlides = async () => {
@@ -26,12 +27,14 @@ export default class HomeScreen extends React.Component{
   this.setState({ movies });
   };
 
-  // getHotels = async () => {
-  //   const hotels = await axios.get("http://54.180.155.194:8000/eggmorning/hotel");
-  // }
+  getHotels = async () => {
+    const hotels = await axios.get("http://54.180.155.194:8000/eggmorning/main/slide");
+    console.log(hotels);
+  }
 
   componentDidMount() {
     this.getSlides();
+    this.getHotels();
   }
     constructor(props){
         super(props);
