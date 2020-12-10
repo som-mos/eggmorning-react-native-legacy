@@ -12,29 +12,36 @@ const hotelImeage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-
 const pageWidth = Dimensions.get("window").width;
 
 export default class HomeScreen extends React.Component{
+  // class형 컴포넌트이기 때문에 hook을 못씀.
   state = {
     // isLoading: true,
     slides:[],
-    hotels:[],
+    // hotels:[],
   };
-  
+  // async, await base
   getSlides = async () => {
     const {
       data: {
-        data: { movies },
+        result: { result },
       },
-    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
-  this.setState({ movies });
+    } = await axios.get("http://54.180.155.194:8000/eggmorning/main/slide");
+  this.setState({ slides: result });
   };
 
-  getHotels = async () => {
-    const hotels = await axios.get("http://54.180.155.194:8000/eggmorning/main/slide");
-    console.log(hotels);
-  }
+  // Promise base
+//  getHotels() {
+//     axios.get("http://54.180.155.194:8000/eggmorning/hotel")
+//     .then(response => {
+//       console.log(response);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+//   }
 
   componentDidMount() {
     this.getSlides();
-    this.getHotels();
+    // this.getHotels();
   }
     constructor(props){
         super(props);

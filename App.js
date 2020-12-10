@@ -12,7 +12,6 @@ const Stack = createStackNavigator();
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
-
   if (!isLoadingComplete) {
     return null;
   } else {
