@@ -26,10 +26,8 @@ const PROP = [
 
 export default function signUpScreen({navigation, checked}) {
   state = {
-    name: '', 
+    name: '',
   }
-
-
 
   handleChange = event => {
     this.setState({ name: event.target.value });
@@ -41,6 +39,7 @@ export default function signUpScreen({navigation, checked}) {
     const user = {
       name: this.state.name
     };
+
     axios.post(`http://54.180.155.194:8000/eggmorning/user`, { user })
       .then(res => {
         console.log(res);
@@ -61,7 +60,6 @@ export default function signUpScreen({navigation, checked}) {
             </Button>
           </Left>
           <Body>
-            {/* <Title>회원가입</Title> */}
           </Body>
           <Right />
         </Header>
@@ -71,27 +69,27 @@ export default function signUpScreen({navigation, checked}) {
               </View>
               <Form onSubmit={this.handleSubmit}>
                 <Item floatingLabel>
-                    <Label style={styles.labelSt}>E-mail (ID)</Label>
-                    <Input type="text" name="email" onChange={this.handleChange} />
+                    <Label htmlFor="email" style={styles.labelSt}>E-mail (ID)</Label>
+                    <Input type="text" name="email" onChange={this.handleChange} maxLength="15" />
                     {/* <Icon name='close-circle' /> */}
                 </Item>
                 <Item floatingLabel>
-                    <Label style={styles.labelSt}>Nickname</Label>
-                    <Input type="text" name="nickname" onChange={this.handleChange}/>
+                    <Label htmlFor="nickname" style={styles.labelSt}>Nickname</Label>
+                    <Input type="text" name="nickname" onChange={this.handleChange} maxLength="15"/>
                     {/* <Icon name='close-circle' /> */}
                   </Item>
                   <Item floatingLabel>
-                    <Label style={styles.labelSt}>Password</Label>
-                    <Input type="text" name="password" onChange={this.handleChange}/>
+                    <Label htmlFor="password" style={styles.labelSt}>Password</Label>
+                    <Input type="text" name="password" onChange={this.handleChange} maxLength="15"/>
                     {/* <Icon name='close-circle' /> */}
                 </Item>
                 <Item floatingLabel>
-                    <Label style={styles.labelSt}>Check Password</Label>
-                    <Input type="text" name="password-check" onChange={this.handleChange}/>
+                    <Label htmlFor="password-check" style={styles.labelSt}>Check Password</Label>
+                    <Input type="text" name="password-check" onChange={this.handleChange} maxLength="15"/>
                 </Item>
                 <Item floatingLabel>
-                    <Label style={styles.labelSt}>Phone</Label>
-                    <Input type="text" name="phone" onChange={this.handleChange}/>
+                    <Label htmlFor="phone" style={styles.labelSt}>Phone</Label>
+                    <Input type="text" name="phone" onChange={this.handleChange} maxLength="11"/>
                     {/* <Icon name='close-circle' /> */}
                 </Item>
                     {/* <Icon name='close-circle' /> */}
@@ -117,33 +115,6 @@ export default function signUpScreen({navigation, checked}) {
 signUpScreen.navigationOptions = {
   header: null,
 };
-
-// function DevelopmentModeNotice() {
-//   if (__DEV__) {
-//     const learnMoreButton = (
-//       <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-//         Learn more
-//       </Text>
-//     );
-
-//     return (
-//       <Text style={styles.developmentModeText}>
-//         Development mode is enabled: your app will be slower but you can use useful development
-//         tools. {learnMoreButton}
-//       </Text>
-//     );
-//   } else {
-//     return (
-//       <Text style={styles.developmentModeText}>
-//         You are not in development mode: your app will run at full speed.
-//       </Text>
-//     );
-//   }
-// }
-
-// function handleLearnMorePress() {
-//   WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-// }
 
 const styles = StyleSheet.create({
   container: {
