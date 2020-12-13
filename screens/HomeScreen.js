@@ -2,6 +2,7 @@
 import * as React from 'react';
 import axios from 'axios';
 // import { useEffect } from 'react';
+import MainSlides from '../components/MainSlides';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Carousel from 'react-native-snap-carousel';
 import { Image, StyleSheet, View, SafeAreaView, ImageBackground, Dimensions} from 'react-native';
@@ -12,144 +13,88 @@ const hotelImeage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-
 const pageWidth = Dimensions.get("window").width;
 
 export default class HomeScreen extends React.Component{
-  // class형 컴포넌트이기 때문에 hook을 못씀.
-  state = {
-    // isLoading: true,
-    slides:[],
-    // hotels:[],
-  };
-  // async, await base
-  getSlides = async () => {
-    const {
-      data: {
-        result: { result },
-      },
-    } = await axios.get("http://54.180.155.194:8000/eggmorning/main/slide");
-  this.setState({ slides: result });
-  };
-
-  // Promise base
-//  getHotels() {
-//     axios.get("http://54.180.155.194:8000/eggmorning/hotel")
-//     .then(response => {
-//       console.log(response);
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-//   }
-
-  componentDidMount() {
-    this.getSlides();
-    // this.getHotels();
-  }
-    constructor(props){
-        super(props);
-        this.state = {
-          activeIndex:0,
-          carouselItems: [
-          {
-              title:"Title 1",
-              username: "username 1",
-              image:"https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg",
-          },
-          {
-              title:"Title 2",
-              username: "username 2",
-              image:"https://inspiralized.com/wp-content/uploads/2014/04/IMG_9392-copy2.jpg",
-          },
-          {
-              title:"Title 3",
-              username: "username 3",
-              image:"https://www.closetcooking.com/wp-content/uploads/2012/12/BaconJamBreakfastSandwichwithFriedEggandAvocado5009978.jpg",
-          },
-          {
-              title:"Title 4",
-              username: "username 4",
-              image:"https://forktospoon.com/wp-content/uploads/2019/12/Depositphotos_201934504_s-2019-Copy.jpg",
-          },
-          {
-              title:"Title 5",
-              username: "username 5",
-              image:"https://masonfit.com/wp-content/uploads/2018/12/healthy-southwest-sweet-potato-breakfast-hash.jpg",
-          },
-          {
-            title:"Title 6",
-            username: "username 6",
-            image:"https://www.spoonforkbacon.com/wordpress/wp-content/uploads/2018/06/Chorizo_breakfast_tacos-800x1066.jpg",
-        },
-        ]
-      }
+      state = {
+        // slides: [],
+        activeIndex:0,
+        carouselItems: [],
     }
 
-    // scrollX = useRef(new Animated.Value(0)).current;
-    _renderItem({item,index,image,imageIndex}){
-        return (
-          <View
-              key={imageIndex}
-              style={{
-              borderRadius: 15,
-              height: 520,
-              padding:5,
-              marginLeft:0,
-              marginRight:0, }}> 
-            <ImageBackground source={{ uri: item.image }} style={styles.ImgBg}>
-            <View style={styles.textContainer}>
-                      <Grid>
-                        <Row>
-                          <Text style={styles.bigText}>
-                          {item.title}
-                          </Text>
-                        </Row>
-                        </Grid>
-                        <Grid style={{position:"relative", paddingTop:20}}>
-                          <Col style={styles.userInfo1}>
-                            <Image
-                                source={require('../img/face.jpg')}
-                                style={styles.imageuser}
-                              />
-                          </Col>
-                          <Col style={styles.userInfo2}>
-                            <Row style={styles.userRows}>
-                              <Text style={styles.smallText}>
-                                WRITER
-                              </Text>
-                            </Row>
-                            <Row style={styles.userRows}>
-                              <Text style={styles.nomalText}>
-                              {item.username}
-                              </Text>
-                            </Row>
-                          </Col>
-                        </Grid>
-                          <Button style={styles.slideBt}>
-                            <Image source={require('../img/moreBT.png')}
-                            style={{ width:96, height:50}}>
-                            </Image>
-                          </Button>
-                      
-                    </View>
-            </ImageBackground>
-          </View>
-        )
-    }
+getSlides = async () => {
+const {
+    data: { result },
+} = await axios.get("http://54.180.155.194:8000/eggmorning/main/slide");
+this.setState({ carouselItems: result });
+};
 
+componentDidMount() {
+this.getSlides();
+}  
+
+_renderItem({ id, title, image, username, item }){
+    return(
+        <View
+        key={id}
+        style={{
+        borderRadius: 15,
+        height: 520,
+        padding:5,
+        marginLeft:0,
+        marginRight:0, }}> 
+    <ImageBackground source={{ uri: item.image }} style={styles.ImgBg}>
+    <View style={styles.textContainer}>
+                <Grid>
+                <Row>
+                    <Text style={styles.bigText}>
+                    {item.title}
+                    </Text>
+                </Row>
+                </Grid>
+                <Grid style={{position:"relative", paddingTop:20}}>
+                    <Col style={styles.userInfo1}>
+                    <Image
+                        source={require('../img/face.jpg')}
+                        style={styles.imageuser}
+                        />
+                    </Col>
+                    <Col style={styles.userInfo2}>
+                    <Row style={styles.userRows}>
+                        <Text style={styles.smallText}>
+                        WRITER
+                        </Text>
+                    </Row>
+                    <Row style={styles.userRows}>
+                        <Text style={styles.nomalText}>
+                        {item.username}
+                        </Text>
+                    </Row>
+                    </Col>
+                </Grid>
+                    <Button style={styles.slideBt}>
+                    <Image source={require('../img/moreBT.png')}
+                    style={{ width:96, height:50}}>
+                    </Image>
+                    </Button>
+                
+            </View>
+    </ImageBackground>
+    </View>
+    )
+}
     render() {
-      const { isLoading } = this.state;
+      const { isLoading, carouselItems } = this.state;
         return (
           <Container>
             <ScrollView style={{flex:1}}>
               <SafeAreaView style={styles.container}>
               <Grid>
-              {/* style={{maxHeight: 470}} */}
                   <Row style={styles.titleLine1}></Row>
                   <Row style={{ height: 36, marginLeft: 30, marginBottom: 25}}>
                     <Text style={styles.textTitle}>News</Text>
-                    <Text style={styles.textTitle}>{ isLoading ? "Loading..." : "We Are Ready" }</Text>
                   </Row>
                   <Row>
                 <View style={styles.scrollContainer}>
-                    <Carousel
+                  {/* < MainSlides /> */}
+                  <Carousel
                       layout={"default"}
                       ref={ref => this.carousel = ref}
                       data={this.state.carouselItems}
@@ -227,11 +172,6 @@ export default class HomeScreen extends React.Component{
         );
     }
 }
-
-// HomeScreen.navigationOptions = {
-//   header: false,
-// };
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
