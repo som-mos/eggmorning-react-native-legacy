@@ -7,12 +7,12 @@ export default class RadioButton extends Component {
 	};
 
 	render() {
-		const { PROP } = this.props;
+		const { gender } = this.props;
 		const { value } = this.state;
 
 		return (
 			<View>
-				{PROP.map(res => {
+				{gender.map(res => {
 					return (
 						<View key={res.key} style={styles.radiocontainer}>
                             <Text style={styles.radioText}>{res.text}</Text>
@@ -29,7 +29,6 @@ export default class RadioButton extends Component {
 						</View>
 					);
 				})}
-                {/* <Text> Selected: {this.state.value} </Text> */}
 			</View>
 		);
 	}

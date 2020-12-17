@@ -2,11 +2,11 @@
 import * as React from 'react';
 import axios from 'axios';
 // import { useEffect } from 'react';
-import MainSlides from '../components/MainSlides';
+// import MainSlides from '../components/MainSlides';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Carousel from 'react-native-snap-carousel';
-import { Image, StyleSheet, View, SafeAreaView, ImageBackground, Dimensions} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Image, StyleSheet, View, SafeAreaView, ImageBackground, Dimensions, ScrollView} from 'react-native';
+// import { ScrollView } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button } from 'native-base';
 
 const hotelImeage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg"];
@@ -30,7 +30,7 @@ componentDidMount() {
 this.getSlides();
 }  
 
-_renderItem({ id, title, image, username, item }){
+_renderItem({ id, item }){
     return(
         <View
         key={id}
@@ -81,10 +81,10 @@ _renderItem({ id, title, image, username, item }){
     )
 }
     render() {
-      const { isLoading, carouselItems } = this.state;
+      // const { isLoading, carouselItems } = this.state;
         return (
           <Container>
-            <ScrollView style={{flex:1}}>
+            <ScrollView>
               <SafeAreaView style={styles.container}>
               <Grid>
                   <Row style={styles.titleLine1}></Row>
@@ -92,23 +92,25 @@ _renderItem({ id, title, image, username, item }){
                     <Text style={styles.textTitle}>News</Text>
                   </Row>
                   <Row>
-                <View style={styles.scrollContainer}>
-                  {/* < MainSlides /> */}
-                  <Carousel
-                      layout={"default"}
-                      ref={ref => this.carousel = ref}
-                      data={this.state.carouselItems}
-                      sliderWidth={pageWidth}
-                      itemWidth={310}
-                      slideStyle={{flex:1, paddingLeft:25, marginRight:-10}}
-                      renderItem={this._renderItem}
-                      onSnapToItem = { index => this.setState({activeIndex:index}) }
-                      activeSlideAlignment = {'start'} />
-                </View>
+                    <View style={styles.scrollContainer}>
+                      <Carousel
+                          layout={"default"}
+                          loop={false}
+                          autoplay={true}
+                          ref={ref => this.carousel = ref}
+                          data={this.state.carouselItems}
+                          sliderWidth={pageWidth}
+                          itemWidth={pageWidth - 70}
+                          slideStyle={{flex:1}}
+                          renderItem={this._renderItem}
+                          onSnapToItem = { index => this.setState({activeIndex:index}) }
+                          activeSlideAlignment = {'start'} 
+                          />
+                    </View>
                 </Row>
                 </Grid>
               </SafeAreaView>
-              <View style={styles.topListContainer}>
+              <SafeAreaView style={styles.topListContainer}>
       <Grid style={{ marginBottom:25}}>
         <Row style={styles.titleLine2}></Row>
         <Row style={{ height: 36, marginLeft: 30, marginBottom: 25}}> 
@@ -166,7 +168,7 @@ _renderItem({ id, title, image, username, item }){
         </Content>
       </Row>
     </Grid>
-      </View>
+      </SafeAreaView>
             </ScrollView>
           </Container>
         );
@@ -183,6 +185,7 @@ export const styles = StyleSheet.create({
     height: 470,
     justifyContent: "center",
     marginTop:10,
+    paddingLeft: 25,
   },
   topListContainer: {
     flex: 1,

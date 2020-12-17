@@ -1,50 +1,52 @@
 import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Image, Platform, StyleSheet, Text, View } from 'react-native';
-import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item, Radio } from 'native-base';
+import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item } from 'native-base';
 import RadioButton from '../components/RadioButton';
 
-const PROP = [
-  {
-    key: 'Male',
-    text: 'Male',
-    name: 'male',
-  },
-  {
-    key: 'Female',
-    text: 'Female',
-    name: 'female',
-  },
-  {
-    key: 'None',
-    text: 'None',
-    name: 'none',
-  },
 
-];
 
-export default function signUpScreen({navigation, checked}) {
-  state = {
-    name: '',
+export default function signUpScreen({navigation}) {
+  const gender = [
+      {
+        key: 'Male',
+        text: 'Male',
+        name: 'male',
+      },
+      {
+        key: 'Female',
+        text: 'Female',
+        name: 'female',
+      },
+      {
+        key: 'None',
+        text: 'None',
+        name: 'none',
+      },
+
+    ];
+
+  const [userSignUp, setUserSignUp] = useState (
+    { email: '', nickname: '', password:'', passwordchk:'', phone: '', gender: ''}
+  );  
+    // useEffect(() => {
+    //   console.log({userSignUp});
+    // })
+
+  const handleChange = (event) => {
+    setUserSignUp({...userSignUp, [event.target.name]: event.target.value})
   }
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const user = {
-      name: this.state.name
-    };
-
-    axios.post(`http://54.180.155.194:8000/eggmorning/user`, { user })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios.post('http://54.180.155.194:8000/eggmorning/user', userSignUp)
+      .then(function (response) {
+        console.log(response);
       })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   return (
@@ -67,35 +69,35 @@ export default function signUpScreen({navigation, checked}) {
               <View style={[styles.codeHighlightContainer, styles.signUpScreenFilename]}>
                 <Text style={styles.loginText}>Sign Up</Text>
               </View>
-              <Form onSubmit={this.handleSubmit}>
+              <Form onSubmit={handleSubmit}>
                 <Item floatingLabel>
                     <Label htmlFor="email" style={styles.labelSt}>E-mail (ID)</Label>
-                    <Input type="text" name="email" onChange={this.handleChange} maxLength="15" />
+                    <Input type="text" name="email" value={userSignUp.email} onChange={handleChange} required />
                     {/* <Icon name='close-circle' /> */}
                 </Item>
                 <Item floatingLabel>
                     <Label htmlFor="nickname" style={styles.labelSt}>Nickname</Label>
-                    <Input type="text" name="nickname" onChange={this.handleChange} maxLength="15"/>
+                    <Input type="text" name="nickname" value={userSignUp.name} onChange={handleChange} required/>
                     {/* <Icon name='close-circle' /> */}
                   </Item>
                   <Item floatingLabel>
                     <Label htmlFor="password" style={styles.labelSt}>Password</Label>
-                    <Input type="text" name="password" onChange={this.handleChange} maxLength="15"/>
+                    <Input type="password" name="password" value={userSignUp.password} onChange={handleChange} required/>
                     {/* <Icon name='close-circle' /> */}
                 </Item>
                 <Item floatingLabel>
-                    <Label htmlFor="password-check" style={styles.labelSt}>Check Password</Label>
-                    <Input type="text" name="password-check" onChange={this.handleChange} maxLength="15"/>
+                    <Label htmlFor="passwordchk" style={styles.labelSt}>Check Password</Label>
+                    <Input type="password" name="passwordchk" value={userSignUp.passwordchk} onChange={handleChange} required/>
                 </Item>
                 <Item floatingLabel>
                     <Label htmlFor="phone" style={styles.labelSt}>Phone</Label>
-                    <Input type="text" name="phone" onChange={this.handleChange} maxLength="11"/>
+                    <Input type="text" name="phone" value={userSignUp.phone} onChange={handleChange} required/>
                     {/* <Icon name='close-circle' /> */}
                 </Item>
                     {/* <Icon name='close-circle' /> */}
                     <View style={styles.radioBt}>
                       <Text style={styles.titleSt}>Gender</Text>
-                      <RadioButton PROP={PROP} />
+                      <RadioButton gender={gender} value={userSignUp.gender}/>
                     </View>
                 
                 
