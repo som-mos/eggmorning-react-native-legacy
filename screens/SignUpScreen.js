@@ -6,34 +6,60 @@ import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label,
 import RadioButton from '../components/RadioButton';
 // import Radio from '../components/Radio';
 
+// const gender = [
+//       {
+//         key: 'Male',
+//         text: 'Male',
+//         name: 'male',
+//       },
+//       {
+//         key: 'Female',
+//         text: 'Female',
+//         name: 'female',
+//       },
+//       {
+//         key: 'None',
+//         text: 'None',
+//         name: 'none',
+//       },
 
+//     ];
+const genderSelect = {}
 export default function signUpScreen({navigation}) {
-  // const gender = [
-  //     {
-  //       key: 'Male',
-  //       text: 'Male',
-  //       name: 'male',
-  //       value: 'male',
-  //     },
-  //     {
-  //       key: 'Female',
-  //       text: 'Female',
-  //       name: 'female',
-  //     },
-  //     {
-  //       key: 'None',
-  //       text: 'None',
-  //       name: 'none',
-  //     },
+  
+  const [gender, setGender] = useState (
+    [
+            {
+              key: 'Male',
+              text: 'Male',
+              name: 'male',
+            },
+            {
+              key: 'Female',
+              text: 'Female',
+              name: 'female',
+            },
+            {
+              key: 'None',
+              text: 'None',
+              name: 'none',
+            },
+      
+          ]
+  )
 
-  //   ];
+const onSelect = (value) => {
+    console.log(value);
+  }
+  // useEffect((value) => {
+  //     userSignUp.gender = value
+  //     console.log(userSignUp.gender);
+  //   })
 
   const [userSignUp, setUserSignUp] = useState (
-    { email: '', nickname: '', password:'', passwordchk:'', phone: '', gender: ''}
+    { email: '', nickname: '', password:'', passwordchk:'', phone: '', gender:'' }
   );  
-    // useEffect(() => {
-    //   console.log({userSignUp});
-    // })
+   
 
   const handleChange = (event) => {
     setUserSignUp({...userSignUp, [event.target.name]: event.target.value})
@@ -99,7 +125,11 @@ export default function signUpScreen({navigation}) {
                     {/* <Icon name='close-circle' /> */}
                     <View style={styles.radioBt}>
                       <Text style={styles.titleSt}>Gender</Text>
-                      <RadioButton value={userSignUp.gender} onChange={handleChange}/>
+                      <RadioButton
+                      onPress={onSelect}
+                      gender={ gender }
+                      value={userSignUp.gender} 
+                      />
                     </View>
                 
                 
