@@ -6,8 +6,27 @@ export default class RadioButton extends Component {
 		value: null,
 	};
 
-	render() {
-		const { gender } = this.props;
+	render() {  
+		const gender = [
+      {
+        key: 'Male',
+        text: 'Male',
+        name: 'male',
+        value: 'male',
+      },
+      {
+        key: 'Female',
+        text: 'Female',
+        name: 'female',
+      },
+      {
+        key: 'None',
+        text: 'None',
+        name: 'none',
+      },
+
+    ];
+		// const { gender } = this.props;
 		const { value } = this.state;
 
 		return (
@@ -22,7 +41,8 @@ export default class RadioButton extends Component {
 									this.setState({
 										value: res.key,
 									});
-								}}>
+								}}
+								value={ value }>
                                   {value === res.key && <View style={styles.selectedRb} />}
                                   
 							</TouchableOpacity>

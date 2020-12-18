@@ -1,31 +1,32 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Image, Platform, StyleSheet, Text, View } from 'react-native';
-import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item } from 'native-base';
+import {Image, Platform, StyleSheet, Text, View, TouchableOpacity,  } from 'react-native';
+import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item} from 'native-base';
 import RadioButton from '../components/RadioButton';
-
+// import Radio from '../components/Radio';
 
 
 export default function signUpScreen({navigation}) {
-  const gender = [
-      {
-        key: 'Male',
-        text: 'Male',
-        name: 'male',
-      },
-      {
-        key: 'Female',
-        text: 'Female',
-        name: 'female',
-      },
-      {
-        key: 'None',
-        text: 'None',
-        name: 'none',
-      },
+  // const gender = [
+  //     {
+  //       key: 'Male',
+  //       text: 'Male',
+  //       name: 'male',
+  //       value: 'male',
+  //     },
+  //     {
+  //       key: 'Female',
+  //       text: 'Female',
+  //       name: 'female',
+  //     },
+  //     {
+  //       key: 'None',
+  //       text: 'None',
+  //       name: 'none',
+  //     },
 
-    ];
+  //   ];
 
   const [userSignUp, setUserSignUp] = useState (
     { email: '', nickname: '', password:'', passwordchk:'', phone: '', gender: ''}
@@ -47,6 +48,7 @@ export default function signUpScreen({navigation}) {
       .catch(function (error) {
         console.log(error);
       });
+      console.log({userSignUp});
   }
 
   return (
@@ -97,14 +99,16 @@ export default function signUpScreen({navigation}) {
                     {/* <Icon name='close-circle' /> */}
                     <View style={styles.radioBt}>
                       <Text style={styles.titleSt}>Gender</Text>
-                      <RadioButton gender={gender} value={userSignUp.gender}/>
+                      <RadioButton value={userSignUp.gender} onChange={handleChange}/>
                     </View>
                 
                 
                   <View style={{flex:1}}>
-                      <Button full style={styles.signupBt} type="submit">
+                      <TouchableOpacity 
+                      onPress={handleSubmit} 
+                      style={styles.signupBt} >
                         <Text style={styles.signupBtTxt}>Sign Up</Text>
-                      </Button>
+                      </TouchableOpacity>
                   </View>
                      
                 </Form>
@@ -242,7 +246,9 @@ const styles = StyleSheet.create({
     backgroundColor:"pink",
     borderRadius:8,
     marginTop:35,
-    marginBottom:25,
+    // marginBottom:25,
+    alignItems: "center",
+    padding: 10,
   },
   signupBtTxt:{
     color:"#fff",
