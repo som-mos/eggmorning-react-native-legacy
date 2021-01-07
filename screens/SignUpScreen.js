@@ -4,68 +4,57 @@ import axios from 'axios';
 import {Image, Platform, StyleSheet, Text, View, TouchableOpacity,  } from 'react-native';
 import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item} from 'native-base';
 import RadioButton from '../components/RadioButton';
-// import Radio from '../components/Radio';
 
-// const gender = [
-//       {
-//         key: 'Male',
-//         text: 'Male',
-//         name: 'male',
-//       },
-//       {
-//         key: 'Female',
-//         text: 'Female',
-//         name: 'female',
-//       },
-//       {
-//         key: 'None',
-//         text: 'None',
-//         name: 'none',
-//       },
 
-//     ];
-const genderSelect = {}
+const gender = [
+    {
+      key: 'Male',
+      text: 'Male',
+      name: 'male',
+    },
+    {
+      key: 'Female',
+      text: 'Female',
+      name: 'female',
+    },
+    {
+      key: 'None',
+      text: 'None',
+      name: 'none',
+    },
+  ];
 export default function signUpScreen({navigation}) {
-  
-  const [gender, setGender] = useState (
-    [
-            {
-              key: 'Male',
-              text: 'Male',
-              name: 'male',
-            },
-            {
-              key: 'Female',
-              text: 'Female',
-              name: 'female',
-            },
-            {
-              key: 'None',
-              text: 'None',
-              name: 'none',
-            },
-      
-          ]
-  )
 
-const onSelect = (value) => {
-    console.log(value);
-  }
-  // useEffect((value) => {
-  //     userSignUp.gender = value
-  //     console.log(userSignUp.gender);
-  //   })
+
+
+
+  const [checked, setChecked] = React.useState('None');
+  
+
 
   const [userSignUp, setUserSignUp] = useState (
     { email: '', nickname: '', password:'', passwordchk:'', phone: '', gender:'' }
   );  
-   
+  
+    // const genderValue = (x) => {
+    //     return {gender: x}
+    // }
+
+  // const genderValue = () => {
+  //   useEffect((value) => {
+  //       const userSignUpAll = Object.assign(userSignUp, value);
+  //         console.log(userSignUp);
+  //       })
+  // }
+  
+  // console.log(value);
 
   const handleChange = (event) => {
     setUserSignUp({...userSignUp, [event.target.name]: event.target.value})
   }
 
   const handleSubmit = (e) => {
+
     e.preventDefault()
     axios.post('http://54.180.155.194:8000/eggmorning/user', userSignUp)
       .then(function (response) {
@@ -125,10 +114,8 @@ const onSelect = (value) => {
                     {/* <Icon name='close-circle' /> */}
                     <View style={styles.radioBt}>
                       <Text style={styles.titleSt}>Gender</Text>
-                      <RadioButton
-                      onPress={onSelect}
-                      gender={ gender }
-                      value={userSignUp.gender} 
+                      <RadioButton 
+                        gender={ gender }
                       />
                     </View>
                 

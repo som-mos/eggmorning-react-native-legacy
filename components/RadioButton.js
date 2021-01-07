@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 export default class RadioButton extends Component {
 	state = {
-		value: '',
+		value: null,
 	};
 
 	render() {
@@ -15,21 +15,20 @@ export default class RadioButton extends Component {
 				{gender.map(res => {
 					return (
 						<View key={res.key} style={styles.radiocontainer}>
-                            <Text style={styles.radioText}>{res.text}</Text>
+							<Text style={styles.radioText}>{res.text}</Text>
 							<TouchableOpacity
 								style={styles.radioCircle}
-								selected={this.state.value}
 								onPress={() => {
 									this.setState({
 										value: res.key,
 									});
 								}}>
                                   {value === res.key && <View style={styles.selectedRb} />}
-                                  
 							</TouchableOpacity>
 						</View>
 					);
 				})}
+                {/* <Text> Selected: {this.state.value} </Text> */}
 			</View>
 		);
 	}
