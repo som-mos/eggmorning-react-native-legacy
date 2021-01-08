@@ -1,7 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Image, Platform, StyleSheet, Text, View, TouchableOpacity,  } from 'react-native';
+import {Image, Platform, StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
 import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item} from 'native-base';
 import RadioButton from '../components/RadioButton';
 
@@ -23,17 +23,11 @@ const gender = [
       name: 'none',
     },
   ];
+
 export default function signUpScreen({navigation}) {
-
-
-
-
-  const [checked, setChecked] = React.useState('None');
   
-
-
   const [userSignUp, setUserSignUp] = useState (
-    { email: '', nickname: '', password:'', passwordchk:'', phone: '', gender:'' }
+    { id: '', nickname: '', password:'', passwordchk:'', phone: '', gender:'' }
   );  
   
     // const genderValue = (x) => {
@@ -88,8 +82,8 @@ export default function signUpScreen({navigation}) {
               </View>
               <Form onSubmit={handleSubmit}>
                 <Item floatingLabel>
-                    <Label htmlFor="email" style={styles.labelSt}>E-mail (ID)</Label>
-                    <Input type="text" name="email" value={userSignUp.email} onChange={handleChange} required />
+                    <Label htmlFor="id" style={styles.labelSt}>E-mail (ID)</Label>
+                    <Input type="text" name="id" value={userSignUp.id} onChange={handleChange} required />
                     {/* <Icon name='close-circle' /> */}
                 </Item>
                 <Item floatingLabel>
@@ -143,7 +137,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#ffd5d4',
+    backgroundColor: '#FFCE70',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -260,7 +254,7 @@ const styles = StyleSheet.create({
   signupBt:{
     height: 50,
     width: 250,
-    backgroundColor:"pink",
+    backgroundColor:"#FFCE70",
     borderRadius:8,
     marginTop:35,
     // marginBottom:25,
@@ -271,7 +265,6 @@ const styles = StyleSheet.create({
     color:"#fff",
     fontSize:20, 
     fontWeight:"400",
-
   },
   labelSt:{
     color:"#bebbbf"

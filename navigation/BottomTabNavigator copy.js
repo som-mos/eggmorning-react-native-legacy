@@ -15,8 +15,21 @@ const INITIAL_ROUTE_NAME = 'Home';
 export default function BottomTabNavigator({ navigation, props }) {
 
 
+// navigation.setOptions({
+//   header: {
+//     tintColor: {
+//       color:"#f7b500",
+//     }
+//   }
+// });
 
+// TabBarOptions({
+//   showLabel: false,
+// });
+
+ 
   return (
+    
     <BottomTab.Navigator 
       // style={props.focused ? styles.activeIcon : styles.nomalIcon}
       initialRouteName={INITIAL_ROUTE_NAME}

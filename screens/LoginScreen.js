@@ -1,9 +1,32 @@
 import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
-import {Image, Platform, StyleSheet, View} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import {Image, Platform, StyleSheet, View, TouchableOpacity} from 'react-native';
 import { Input, Container, Header, Left, Body, Right, Text, Button, Icon, Content, Form, Item, Label} from 'native-base';
 
 export default function LoginScreen({navigation}) {
+
+  const [login, setLogin] = useState (
+    { id: '', password: ''}
+  );
+
+  const handleChange = (event) => {
+    setLogin({...login, [event.target.name]: event.target.value})
+  }
+
+  const handleSubmit = (e) => {
+
+    e.preventDefault()
+    axios.post('http://54.180.155.194:8000/eggmorning/session', login)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      console.log(login);
+  }
+
   return (
     <Container>
       <View style={styles.container}> 
@@ -36,26 +59,35 @@ export default function LoginScreen({navigation}) {
           </View>
             <Form>
                 <Item floatingLabel>
-                  <Label style={{color:"pink"}}>Username</Label>
-                  <Input />
+                  <Label style={styles.labelSt}>Username</Label>
+                  <Input type="text" name="id" value={login.id} onChange={handleChange} required />
                 </Item>
                 <Item floatingLabel>
-                  <Label style={{color:"pink"}}>Password</Label>
-                  <Input />
+                  <Label style={styles.labelSt}>Password</Label>
+                  <Input type="password" name="password" value={login.password} onChange={handleChange} required/>
                 </Item>
-                <View style={{flex:1}}>
-                  <View style={{flex:2, flexDirection:"column"}}>
+                  <View>
+                    <View>
+                        <Text style={styles.warningText}>아이디 또는 비밀번호가 일치하지 않습니다.</Text>
+                    </View>
+                    <View style={{marginTop:'20%'}}> 
                     <Right>
-                      <Text style={styles.signUp}>아직 계정이 없으신가요?
-                      <Text style={styles.signUpBt} onPress={() =>navigation.navigate('SignUp', { name: 'SignUp' })}> 회원가입</Text></Text>
-                    </Right>
+                        <Text style={styles.signUp}>아직 계정이 없으신가요?
+                        <Text style={styles.signUpBt} onPress={() =>navigation.navigate('SignUp', { name: 'SignUp' })}> 회원가입</Text></Text>
+                      </Right>
+                        <TouchableOpacity 
+                        onPress={handleSubmit} 
+                        style={styles.loginBt} >
+                          <Text style={styles.loginBtTxt}>Login</Text>
+                        </TouchableOpacity>
+                    </View>
                   </View>
-                  <View style={{flex:2, flexDirection:"column"}}>
+                  {/* <View style={{flex:2, flexDirection:"column"}}>
                     <Button full style={styles.loginBt}>
-                      <Text style={styles.loginBtTxt}>LogIn</Text>
+                      <Text style={styles.loginBtTxt}>Login</Text>
                     </Button>
-                  </View>
-                </View>
+                  </View> */}
+                
             </Form>
         </View>
     </View>
@@ -98,7 +130,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#ffd5d4',
+    backgroundColor: '#FFCE70',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -113,10 +145,10 @@ const styles = StyleSheet.create({
   logoImgContainer: {
     position:'relative',
     alignItems: 'center',
-    marginTop: 40,
-    height: '30%',
-    maxHeight:180,
-    flex:2,
+    // marginTop: 40,
+    height: '25%',
+    maxHeight:160,
+    flex:1,
   }, 
   logoImage: {
     width:200,
@@ -133,7 +165,7 @@ const styles = StyleSheet.create({
   },
    loginBottomContainer: {
     alignItems: 'center',
-    height:'70%',
+    height:'75%',
     width:'100%',
     margin:0,
     padding:0,
@@ -142,54 +174,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius:50,
     borderTopRightRadius:50
   },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    paddingHorizontal: 10,
-    paddingTop:20,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
   loginText:{
     fontSize: 20,
     color:"#7a7a7a",
     fontWeight:'600',
-    marginTop:30
+    marginTop:"100%"
   },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-
   inputText: {
     width:30,
     lineHeight:30,
@@ -211,29 +201,40 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     paddingRight:10
   },
-
+  warningText:{
+    color:"#ff5e92",
+    fontSize:12,
+    marginTop:15,
+    alignSelf:"center",
+    display:'none'
+  },
+  signUp:{
+    color:"#7a7a7a",
+    fontSize:12,
+    marginBottom:"10%",
+  },
+  signUpBt:{
+    color:"#7a7a7a",
+    fontSize:14,
+    fontWeight:"600",
+  },
   loginBt:{
     height: 50,
     width: 250,
-    backgroundColor:"pink",
+    backgroundColor:"#FFCE70",
     borderRadius:8,
-    marginTop:25,
-    marginBottom:25,
+    // marginTop:35,
+    alignItems: "center",
+    padding: 10,
   },
   loginBtTxt:{
     color:"#fff",
     fontSize:20, 
-    fontWeight:"400"
+    fontWeight:"400",
+    textAlignVertical:"center",
+    paddingTop: 3,
   },
-  signUp:{
-    color:"#ff5e92",
-    fontSize:12,
-    marginTop:15,
+  labelSt:{
+    color:"#bebbbf"
   },
-  signUpBt:{
-    color:"#ff5e92",
-    fontSize:14,
-    fontWeight:"600",
-  },
-
 });

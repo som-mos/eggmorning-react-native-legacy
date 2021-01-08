@@ -1,13 +1,12 @@
 // import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import axios from 'axios';
-// import { useEffect } from 'react';
-// import MainSlides from '../components/MainSlides';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Carousel from 'react-native-snap-carousel';
 import { Image, StyleSheet, View, SafeAreaView, ImageBackground, Dimensions, ScrollView} from 'react-native';
-// import { ScrollView } from 'react-native-gesture-handler';
 import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button } from 'native-base';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+
 
 const hotelImeage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg"];
 const pageWidth = Dimensions.get("window").width;
@@ -29,6 +28,10 @@ this.setState({ carouselItems: result });
 componentDidMount() {
 this.getSlides();
 }  
+
+ratingCompleted(rating) {
+  console.log("Rating is: " + rating)
+}
 
 _renderItem({ id, item }){
     return(
@@ -80,8 +83,9 @@ _renderItem({ id, item }){
     </View>
     )
 }
+
     render() {
-      // const { isLoading, carouselItems } = this.state;
+   
         return (
           <Container>
             <ScrollView>
@@ -125,8 +129,25 @@ _renderItem({ id, item }){
                 <Body>
                   <Text>Hotel 1</Text>
                   <Text note>This hotel is good</Text>
-                </Body>  
-                <Text note>9.9/10</Text>
+                  <View style={styles.ratingView}>
+                    <View style={{ flex:0.5 }}>
+                       <Rating
+                          onFinishRating={this.ratingCompleted}
+                          imageSize={20}
+                          ratingBackgroundColor={"#FFCE70"}
+                          fractions={1} 
+                          startingValue={5}
+                        /> 
+                    </View>
+                    <View style={{ flex:0.5 }}>
+                      <Text style={styles.ratingText}>4.8</Text>
+                    </View>
+                     
+                  </View>
+                 
+                 
+                </Body>
+                
             </ListItem>
             <ListItem>
               <Text style={styles.yellow}>2</Text>
@@ -161,7 +182,7 @@ _renderItem({ id, item }){
                 <Body>
                   <Text>Hotel 5</Text>
                   <Text note>This hotel is good</Text>
-                </Body>  
+                </Body>
                 <Text note>9.5/10</Text>
             </ListItem>
           </List>
@@ -283,7 +304,7 @@ export const styles = StyleSheet.create({
     height: 1,
     borderBottomWidth:3,
     borderStyle: "solid",
-    borderColor: "#f7b500",
+    borderColor: "#FFCE70",
     marginLeft: 30,
     marginTop:50,
   },
@@ -292,11 +313,22 @@ export const styles = StyleSheet.create({
     height: 1,
     borderBottomWidth:3,
     borderStyle: "solid",
-    borderColor: "#f7b500",
+    borderColor: "#FFCE70",
     marginLeft: 30,
   },
   topThumb:{
     borderRadius: 12, width:76, height:76
+  },
+  ratingView:{
+    flexDirection: "row",
+    height: 20,
+    alignItems: "center",
+    marginLeft:10,
+    marginTop:10
+  },
+  ratingText:{
+    color:"#7a7a7a",
+    paddingTop:2
   },
   red:{ color:"red",
   fontSize:18,
@@ -318,4 +350,13 @@ export const styles = StyleSheet.create({
   fontSize:18,
   marginRight:10,
   fontWeight:"bold",},
+  activeIcon: {
+    borderColor: '#F2B04C',
+    borderWidth: 0,
+    borderTopWidth:3,
+  },
+  nomalIcon: {
+    borderColor: '#F2B04C',
+    borderWidth: 0,
+  }
 });

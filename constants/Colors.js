@@ -1,6 +1,6 @@
-const tintColor = '#f7b500';
+const tintColor = '#F2B04C';
 const subColor = '#fcdb00';
-const textColor = '#494547';
+const textColor = '#BDBDBD';
 
 export default {
   tintColor,
