@@ -1,44 +1,93 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, View, Button } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-
-import { MonoText } from '../components/StyledText';
+import {Image, StyleSheet, View, TouchableOpacity} from 'react-native';
+import { Container, Header, Left, Right, Text, Content, List, ListItem} from 'native-base';
 
 export default function MypageScreen({navigation}) {
   return (
+  <Container>
     <View style={styles.container}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
+        <Header transparent>
+          <Left>
+          {/* <Button transparent
+             onPress={() =>
+              navigation.goBack()
+            }>
+              <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
+            </Button> */}
+          </Left>
+          <Right />
+        </Header>
+        <View style={styles.topContainer}>
           <Image
-            source={
-             require('../img/logo.png')
-            }
-            style={styles.welcomeImage}
+            source={require('../img/face.jpg')}
+            style={styles.userImage}
           />
+          <Text style={styles.userName}>UserName</Text>
         </View>
 
-        <View style={styles.getStartedContainer}>
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
+        <View style={styles.myBottomContainer}>
+            <Content style={{width:'100%'}}>
+              <List style={{height:'100%'}}>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.myList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      숙소 예약 내역
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.myList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      나의 후기
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.myList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      나의 쿠폰
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.myList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      최근 본 상품
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.myList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      기본 정보 수정
+                    </Text>
+                </ListItem>
+              </List>
+            </Content>
+          <View>
 
-          <View style={[styles.codeHighlightContainer, styles.MypageScreenFilename]}>
-           <MonoText>screens/LoginScreen.js</MonoText>
+          <View style={{flex:1, flexDirection: 'row'}}>
+            <View style={{flex:0.5, padding:5}}>
+              <TouchableOpacity
+                      style={styles.loginBt}
+                            onPress={() =>
+                                navigation.navigate('Login', { name: 'Login' })}>
+                          <Text style={styles.loginBtTxt}>Login</Text>
+                        </TouchableOpacity>
+            </View>
+            <View style={{flex:0.5, padding:5}}>
+                <TouchableOpacity
+                            style={styles.loginBt}
+                                onPress={() =>
+                                    navigation.navigate('SignUp', { name: 'SignUp' })}>
+                              <Text style={styles.loginBtTxt}>SignUp</Text>
+                            </TouchableOpacity>
+            </View>
+          
+           
+            </View>
+            
           </View>
-          <Button
-              title="Go to Login Page"
-              onPress={() =>
-                  navigation.navigate('Login', { name: 'SomSom' })
-              }
-          />
-          <Button
-              title="Go to SignUp Page"
-              onPress={() =>
-                  navigation.navigate('SignUp', { name: 'SignUp' })
-              }
-          />
-        </View>
-      </ScrollView>
+</View>
     </View>
+  </Container>
   );
 }
 
@@ -49,88 +98,64 @@ MypageScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#FFCE70',
   },
   contentContainer: {
     paddingTop: 30,
   },
-  welcomeContainer: {
+  topContainer: {
+    position:'relative',
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+    // marginTop: 40,
+    // padding: '2%',
+    height: '25%',
+    maxHeight:180,
+    flex:1,
+  }, 
+  userImage:{
+    marginTop:-10,
+    width: 110, 
+    height: 110, 
+    borderRadius: 50
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+  userName:{
+    // marginLeft: -10,
+    color:"#ffffff",
+    fontSize:24,
+    fontWeight:'bold',
+    marginTop:'3.5%',
   },
-  getStartedContainer: {
+   myBottomContainer: {
     alignItems: 'center',
-    marginHorizontal: 50,
+    height:'75%',
+    width:'100%',
+    margin:0,
+    paddingTop:10,
+    flex:2,
+    backgroundColor:'#fff',
+    borderTopLeftRadius:50,
   },
-  MypageScreenFilename: {
-    marginVertical: 7,
+  loginBt:{
+    height: 40,
+    width: 80,
+    backgroundColor:"#FFCE70",
+    borderRadius:8,
+    // marginTop:35,
+    alignItems: "center",
+    padding: 5,
   },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
+  loginBtTxt:{
+    color:"#fff",
+    fontSize:20, 
+    fontWeight:"400",
+    textAlignVertical:"center",
+    paddingTop: 3,
   },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  myList:{
+    color:"#B0B0B0",
+    fontWeight:'bold',
+    fontSize: 18,
+    padding:20
+  }
 });

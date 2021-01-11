@@ -1,74 +1,113 @@
-import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import {Image, StyleSheet, View, TouchableOpacity, SafeAreaView, Dimensions} from 'react-native';
+import { Container, Header, Left, Right, Text, Content, List, ListItem} from 'native-base';
 
-export default function MoreScreen() {
+
+const pageWidth = Dimensions.get("window").width;
+const pageHeight = Dimensions.get("window").height;
+
+export default function MoreScreen({navigation}) {
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <OptionButton
-        icon="md-school"
-        label="Read the Expo documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
-      />
-
-      <OptionButton
-        icon="md-compass"
-        label="Read the React Navigation documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
-      />
-
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
-      />
-    </ScrollView>
-  );
-}
-
-function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
+  <Container>
+    <SafeAreaView style={styles.container}>
+        <View style={styles.topContainer}>
+          <Text style={styles.moreTitle}>More</Text>
         </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
-        </View>
+        <View style={styles.moreBottomContainer}>
+            <Content style={{width:pageWidth, height:pageHeight, padding:'1rem'}}>
+              <List>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.moreList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      공지사항
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.moreList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      고객문의
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.moreList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      알림설정
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.moreList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      앱정보
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.moreList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      개인정보 보호정책
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.moreList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      이용약관
+                    </Text>
+                </ListItem>
+                <ListItem noBorder={true}>
+                  <Left />
+                    <Text style={styles.moreList} onPress={() =>navigation.navigate('Login', { name: 'Login' })}>
+                      회원정보 변경
+                    </Text>
+                </ListItem>
+              </List>
+            </Content>
       </View>
-    </RectButton>
+    </SafeAreaView>
+  </Container>
   );
 }
+
+MoreScreen.navigationOptions = {
+  header: null,
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fafafa',
+    flexDirection: 'column',
+    backgroundColor: '#FFCE70',
+    height: pageHeight,
   },
-  contentContainer: {
-    paddingTop: 15,
+  topContainer: {
+    position:'relative',
+    alignItems: 'center',
+    marginTop: '-4%',
+    height:'5%',
+    maxHeight: pageHeight * 0.15,
+    flex:1,
   },
-  optionIconContainer: {
-    marginRight: 12,
+  moreTitle:{
+    padding:'14%',
+    color:"#ffffff",
+    fontSize:24,
+    fontWeight:'bold',
+    alignSelf: 'center'
   },
-  option: {
-    backgroundColor: '#fdfdfd',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: 0,
-    borderColor: '#ededed',
+   moreBottomContainer: {
+    alignItems: 'center',
+    // width: pageWidth,
+    margin:0,
+    // padding:'1rem',
+    flex:2,
+    height:'95%',
+    backgroundColor:'#fff',
+    borderTopLeftRadius:50,
   },
-  lastOption: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  optionText: {
-    fontSize: 15,
-    alignSelf: 'flex-start',
-    marginTop: 1,
-  },
+  moreList:{
+    color:"#B0B0B0",
+    fontWeight:'bold',
+    fontSize: '1.2rem',
+    paddingTop:'1rem',
+    paddingBottom:'1rem',
+  }
 });
