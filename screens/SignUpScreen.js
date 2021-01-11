@@ -4,7 +4,12 @@ import axios from 'axios';
 import {Image, Platform, StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
 import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item} from 'native-base';
 import RadioButton from '../components/RadioButton';
+import {useRecoilState, atom} from 'recoil';
 
+const genderState = atom({
+  key: 'gender', // unique ID (with respect to other atoms/selectors)
+  default: '', // default value (aka initial value)
+});
 
 const gender = [
     {
@@ -40,8 +45,9 @@ export default function signUpScreen({navigation}) {
   //         console.log(userSignUp);
   //       })
   // }
-  
-  // console.log(value);
+
+  const [genderValue, setGenderValue] = useRecoilState(genderState);
+  console.log("genderValue :: ", genderValue);
 
   const handleChange = (event) => {
     setUserSignUp({...userSignUp, [event.target.name]: event.target.value})

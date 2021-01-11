@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import {useRecoilState, atom} from 'recoil';
 
-export default class RadioButton extends Component {
-	state = {
-		value: null,
-	};
+const genderState = atom({
+	key: 'gender', // unique ID (with respect to other atoms/selectors)
+	default: '', // default value (aka initial value)
+});
 
-	render() {
-		const { gender } = this.props;
-		const { value } = this.state;
-
-		return (
+export default function RadioButton({gender}) {
+	const [genderValue, setGenderValue] = useRecoilState(genderState);
+	return (
 			<View>
 				{gender.map(res => {
 					return (
@@ -19,19 +18,16 @@ export default class RadioButton extends Component {
 							<TouchableOpacity
 								style={styles.radioCircle}
 								onPress={() => {
-									this.setState({
-										value: res.key,
-									});
+									setGenderValue(res.key);
 								}}>
-                                  {value === res.key && <View style={styles.selectedRb} />}
+                                  {genderValue === res.key && <View style={styles.selectedRb} />}
 							</TouchableOpacity>
 						</View>
 					);
 				})}
                 {/* <Text> Selected: {this.state.value} </Text> */}
 			</View>
-		);
-	}
+	);
 }
 
 const styles = StyleSheet.create({

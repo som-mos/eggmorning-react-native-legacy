@@ -39,6 +39,7 @@
     "react-native-screens": "~2.2.0",
     "react-native-snap-carousel": "^4.0.0-beta.5",
     "react-native-web": "~0.11.7",
+    "recoil": "github:facebookexperimental/Recoil#nightly",
     "rnpm": "^1.9.0"
   },
   "devDependencies": {
