@@ -16,7 +16,7 @@ export default function LoginScreen({navigation}) {
 
   const handleSubmit = (e) => {
 
-    e.preventDefault()
+    e.preventDefault();
     axios.post('http://54.180.155.194:8000/eggmorning/session', login)
       .then(function (response) {
         console.log(response);

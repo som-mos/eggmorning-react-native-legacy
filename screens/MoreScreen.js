@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   moreList:{
     color:"#B0B0B0",
     fontWeight:'bold',
-    fontSize: '1.2rem',
+    fontSize: 24,
     paddingTop:'1rem',
     paddingBottom:'1rem',
   }

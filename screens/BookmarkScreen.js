@@ -342,14 +342,14 @@ export const styles = StyleSheet.create({
   },
   listTitle:{
     fontSize: 18,
-    fontWeight: 600,
+    fontWeight: "600",
     letterSpacing: 0,
     color: "#000000",
     // marginBottom:10,
   },
   listText:{
     fontSize: 14,
-    fontWeight: 400,
+    fontWeight: "400",
     letterSpacing: 0,
     color: "#7A7A7A",
   },

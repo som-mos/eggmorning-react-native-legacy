@@ -6,7 +6,7 @@ import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label,
 import RadioButton from '../components/RadioButton';
 import {useRecoilState, atom} from 'recoil';
 
-const genderState = atom({
+export const genderState = atom({
   key: 'gender', // unique ID (with respect to other atoms/selectors)
   default: '', // default value (aka initial value)
 });

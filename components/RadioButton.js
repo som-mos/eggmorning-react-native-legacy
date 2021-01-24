@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import {useRecoilState, atom} from 'recoil';
-
-const genderState = atom({
-	key: 'gender', // unique ID (with respect to other atoms/selectors)
-	default: '', // default value (aka initial value)
-});
+import {genderState} from '../screens/SignUpScreen'
 
 export default function RadioButton({gender}) {
 	const [genderValue, setGenderValue] = useRecoilState(genderState);
