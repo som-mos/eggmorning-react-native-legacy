@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import {useRecoilState, atom} from 'recoil';
-import {genderState} from '../screens/SignUpScreen'
+import {useRecoilState} from 'recoil';
 
-export default function RadioButton({gender}) {
-	const [genderValue, setGenderValue] = useRecoilState(genderState);
+const SomRadioButton = (props) =>{
+	const { dataList, recoilState } = props;
+	const [data, setData] = useRecoilState(recoilState);
+
 	return (
-			<View>
-				{gender.map(res => {
-					return (
-						<View key={res.key} style={styles.radiocontainer}>
-							<Text style={styles.radioText}>{res.text}</Text>
-							<TouchableOpacity
-								style={styles.radioCircle}
-								onPress={() => {
-									setGenderValue(res.key);
-								}}>
-                                  {genderValue === res.key && <View style={styles.selectedRb} />}
-							</TouchableOpacity>
-						</View>
-					);
-				})}
-                {/* <Text> Selected: {this.state.value} </Text> */}
-			</View>
+		<View>
+			{(dataList||[]).map(res => {
+				return (
+					<View key={res.key} style={styles.radiocontainer}>
+						<Text style={styles.radioText}>{res.text}</Text>
+						<TouchableOpacity
+							style={styles.radioCircle}
+							selected={data}
+							onPress={() => {
+								setData(res.key)
+							}}>
+							{data === res.key && <View style={styles.selectedRb} />}
+						</TouchableOpacity>
+					</View>
+				);
+			})}
+		</View>
 	);
-}
+};
+
+export default SomRadioButton;
 
 const styles = StyleSheet.create({
 	radiocontainer: {
