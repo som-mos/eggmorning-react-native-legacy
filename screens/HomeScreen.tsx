@@ -8,7 +8,7 @@ import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail,
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
 
-const hotelImeage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg"];
+const hotelImage: Array<String> = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg"];
 const pageWidth = Dimensions.get("window").width;
 
 export default class HomeScreen extends React.Component{
@@ -86,6 +86,7 @@ _renderItem({ id, item }){
 
     render() {
    
+        // @ts-ignore
         return (
           <Container>
             <ScrollView>
@@ -108,7 +109,7 @@ _renderItem({ id, item }){
                           slideStyle={{flex:1}}
                           renderItem={this._renderItem}
                           onSnapToItem = { index => this.setState({activeIndex:index}) }
-                          activeSlideAlignment = {'start'} 
+                          activeSlideAlignment = {'start'}
                           />
                     </View>
                 </Row>
@@ -125,7 +126,7 @@ _renderItem({ id, item }){
           <List>
             <ListItem>
                 <Text style={styles.red}>1</Text>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
+                <Thumbnail square large source={{uri: hotelImage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 1</Text>
                   <Text note>This hotel is good</Text>
@@ -151,7 +152,7 @@ _renderItem({ id, item }){
             </ListItem>
             <ListItem>
               <Text style={styles.yellow}>2</Text>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
+                <Thumbnail square large source={{uri: hotelImage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 2</Text>
                   <Text note>This hotel is good</Text>
@@ -160,7 +161,7 @@ _renderItem({ id, item }){
             </ListItem>
             <ListItem>
               <Text style={styles.green}>3</Text>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
+                <Thumbnail square large source={{uri: hotelImage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 3</Text>
                   <Text note>This hotel is good</Text>
@@ -169,7 +170,7 @@ _renderItem({ id, item }){
             </ListItem>
             <ListItem>
               <Text style={styles.blue}>4</Text>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
+                <Thumbnail square large source={{uri: hotelImage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 4</Text>
                   <Text note>This hotel is good</Text>
@@ -178,7 +179,7 @@ _renderItem({ id, item }){
             </ListItem>
             <ListItem>
               <Text style={styles.purple}>5</Text>
-                <Thumbnail square large source={{uri: hotelImeage[0]}} style={styles.topThumb}/>
+                <Thumbnail square large source={{uri: hotelImage[0]}} style={styles.topThumb}/>
                 <Body>
                   <Text>Hotel 5</Text>
                   <Text note>This hotel is good</Text>
