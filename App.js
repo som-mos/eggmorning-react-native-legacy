@@ -6,7 +6,7 @@ import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 import SignUpScreen from "./screens/SignUpScreen";
-import LoginScreen from "./screens/LoginScreen";
+import SignInScreen from "./screens/SignInScreen";
 import {RecoilRoot} from "recoil"
 
 const Stack = createStackNavigator();
@@ -28,7 +28,7 @@ export default function App(props) {
               >
                 <Stack.Screen name="Root" component={BottomTabNavigator} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
-                <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Screen name="SignIn" component={SignInScreen} />
               </Stack.Navigator>
             </NavigationContainer>
           </View>

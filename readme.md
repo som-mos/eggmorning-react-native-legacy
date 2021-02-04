@@ -27,7 +27,7 @@ eggmorning-react-native //this project name
 >screens
 >>BookmarkScreen.js // Bookmark Menu
 >>HomeScreens.js    // Home Menu
->>LoginScreen.js    // Login Menu
+>>SignInScreen.js    // SignIn Menu
 >>MoreScreen.js     // More Menu
 >>MypageScreen.js   // My Page Menu
 >>>SearchScreen.js   // Search Page
