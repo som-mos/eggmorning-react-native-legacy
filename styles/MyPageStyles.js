@@ -1,11 +1,6 @@
 import { StyleSheet } from 'react-native'
 
 const MyPageScreenStyle = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#FFCE70',
-  },
   contentContainer: {
     paddingTop: 30,
   },
@@ -24,7 +19,7 @@ const MyPageScreenStyle = StyleSheet.create({
   },
   userName:{
     color:"#ffffff",
-    fontSize:24,
+    fontSize:20,
     fontWeight:'bold',
     marginTop:'3.5%',
   },
@@ -33,10 +28,14 @@ const MyPageScreenStyle = StyleSheet.create({
     height:'75%',
     width:'100%',
     margin:0,
-    paddingTop:10,
     flex:2,
     backgroundColor:'#fff',
     borderTopLeftRadius:50,
+  },
+  listStyle: {
+    width:'100%',
+    height:'80%',
+    justifyContent:'center',
   },
   SignInBt:{
     height: 40,
@@ -52,12 +51,6 @@ const MyPageScreenStyle = StyleSheet.create({
     fontWeight:"400",
     textAlignVertical:"center",
     paddingTop: 3,
-  },
-  myList:{
-    color:"#B0B0B0",
-    fontWeight:'bold',
-    fontSize: 18,
-    padding:20
   }
 });
 

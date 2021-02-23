@@ -3,8 +3,10 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
+import getCommonStyle from '../styles/CommonStyles';
 import getStyleSheet from '../styles/SearchStyles';
 
+const commonstyle = getCommonStyle();
 const styles = getStyleSheet();
 
 export default function SearchScreen() {

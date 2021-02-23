@@ -5,35 +5,16 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 import { Image, StyleSheet, View, SafeAreaView, ImageBackground, ScrollView} from 'react-native';
 import { Container, Content, List, ListItem, Text, Left, Body, Right, Thumbnail, Button } from 'native-base';
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import getCommonStyle from '../styles/CommonStyles';
 import getStyleSheet from '../styles/BookMarkStyles';
 
+const commonstyle = getCommonStyle();
 const styles = getStyleSheet();
 
 const hotelImeage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-recipe.jpg"];
 // ListItem 부분 map 또는 컴포넌트로 리팩토링 진행해야함!
 
 export default class BookmarkScreen extends React.Component{
-  // constructor(props) {
-  //     super(props);
-
-  //      this.state = {
-  //       item: [],
-  //       };
-  // }
-     
-    // getThumbnails = async () => {
-    //   const {
-    //     data: { result },
-    //   } = await axios.get("http://54.180.155.194:8000/eggmorning/main/slide");
-    //   this.setState({ item: result });
-    // };
-    
-    // componentWillMount() {
-    //   axios.get("http://54.180.155.194:8000/eggmorning/main/slide").then(res => {
-    //     this.setState({item: res.data });
-    //   })
-    // } 
-
 ratingCompleted(rating) {
   console.log("Rating is: " + rating)
 }
@@ -43,11 +24,11 @@ ratingCompleted(rating) {
         return (
           <Container>
             <ScrollView>
-              <SafeAreaView style={styles.container}>
+              <SafeAreaView style={commonstyle.container}>
               <Grid>
-                  <Row style={styles.titleLine1}></Row>
+                  <Row style={commonstyle.titleLine1}></Row>
                   <Row style={{ height: 36, marginLeft: 30, marginBottom: 25}}>
-                    <Text style={styles.textTitle}>Bookmark</Text>
+                    <Text style={commonstyle.textTitle}>Bookmark</Text>
                   </Row>
                   <Row>
                   <Content style={{paddingLeft:15, paddingRight:15 }}>

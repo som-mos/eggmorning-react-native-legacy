@@ -82,15 +82,6 @@ const BookMarkStyles = StyleSheet.create({
     fontWeight: "bold",
     height: 60,
   },
-  textTitle: {
-    height: 33,
-    fontSize: 28,
-    fontWeight: "bold",
-    fontStyle: "normal",
-    letterSpacing: 0,
-    color: "#000000",
-    marginBottom:10,
-  },
   listTitle:{
     fontSize: 18,
     fontWeight: "600",

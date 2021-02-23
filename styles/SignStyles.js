@@ -22,7 +22,6 @@ const SignInScreenStyle = StyleSheet.create({
   logoImgContainer: {
     position:'relative',
     alignItems: 'center',
-    // marginTop: 40,
     height: '25%',
     maxHeight:160,
     flex:1,
@@ -55,7 +54,7 @@ const SignInScreenStyle = StyleSheet.create({
     fontSize: 20,
     color:"#7a7a7a",
     fontWeight:'600',
-    marginTop:"100%"
+    marginTop:"12%"
   },
   inputText: {
     width:30,

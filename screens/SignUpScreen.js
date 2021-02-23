@@ -6,6 +6,7 @@ import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label,
 import SomRadioButton from '../components/SomRadioButton';
 import {useRecoilState, atom} from 'recoil';
 import {userState} from '../recoil-state'
+import getCommonStyle from '../styles/CommonStyles';
 import getStyleSheet from '../styles/SignStyles';
 
 const genderList = [
@@ -26,6 +27,7 @@ const genderList = [
     },
 ];
 
+const commonstyle = getCommonStyle();
 const screenType = 'signup';
 const styles = getStyleSheet(screenType);
 
@@ -71,7 +73,7 @@ export default function signUpScreen({navigation}) {
                                 onPress={() =>
                                     navigation.goBack()
                                 }>
-                            <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
+                            <Icon type="Feather" name="arrow-left" style={{color:"#ffffff"}}/>
                         </Button>
                     </Left>
                     <Body>

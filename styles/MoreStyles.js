@@ -25,7 +25,8 @@ const MoreScreenStyle = StyleSheet.create({
     alignSelf: 'center'
   },
    moreBottomContainer: {
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    justifyContent:'center',
     margin:0,
     flex:2,
     height:'95%',

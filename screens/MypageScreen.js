@@ -2,23 +2,18 @@ import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import {Image, StyleSheet, View, TouchableOpacity} from 'react-native';
 import { Container, Header, Left, Right, Text, Content, List, ListItem} from 'native-base';
+import getCommonStyle from '../styles/CommonStyles';
 import getStyleSheet from '../styles/MyPageStyles';
 
+const commonstyle = getCommonStyle();
 const styles = getStyleSheet();
 
 export default function MypageScreen({navigation}) {
   return (
   <Container>
-    <View style={styles.container}>
+    <View style={commonstyle.backgroundColorContainer}>
         <Header transparent>
-          <Left>
-          {/* <Button transparent
-             onPress={() =>
-              navigation.goBack()
-            }>
-              <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
-            </Button> */}
-          </Left>
+          <Left />
           <Right />
         </Header>
         <View style={styles.topContainer}>
@@ -29,44 +24,41 @@ export default function MypageScreen({navigation}) {
           <Text style={styles.userName}>UserName</Text>
         </View>
         <View style={styles.myBottomContainer}>
-            <Content style={{width:'100%'}}>
-              <List style={{height:'100%'}}>
+              <List style={styles.listStyle}>
                 <ListItem noBorder={true}>
                   <Left />
-                    <Text style={styles.myList} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
+                    <Text style={commonstyle.listText} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
                       숙소 예약 내역
                     </Text>
                 </ListItem>
                 <ListItem noBorder={true}>
                   <Left />
-                    <Text style={styles.myList} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
+                    <Text style={commonstyle.listText} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
                       나의 후기
                     </Text>
                 </ListItem>
                 <ListItem noBorder={true}>
                   <Left />
-                    <Text style={styles.myList} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
+                    <Text style={commonstyle.listText} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
                       나의 쿠폰
                     </Text>
                 </ListItem>
                 <ListItem noBorder={true}>
                   <Left />
-                    <Text style={styles.myList} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
+                    <Text style={commonstyle.listText} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
                       최근 본 상품
                     </Text>
                 </ListItem>
                 <ListItem noBorder={true}>
                   <Left />
-                    <Text style={styles.myList} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
+                    <Text style={commonstyle.listText} onPress={() =>navigation.navigate('SignIn', { name: 'SignIn' })}>
                       기본 정보 수정
                     </Text>
                 </ListItem>
               </List>
-            </Content>
           <View>
-
           <View style={{flex:1, flexDirection: 'row'}}>
-            <View style={{flex:0.5}}>
+            <View style={{marginRight:10, marginLeft:10}}>
               <TouchableOpacity
                       style={styles.SignInBt}
                             onPress={() =>
@@ -74,7 +66,7 @@ export default function MypageScreen({navigation}) {
                           <Text style={styles.SignInBtTxt}>SignIn</Text>
               </TouchableOpacity>
             </View>
-            <View style={{flex:0.5}}>
+            <View style={{marginRight:10, marginLeft:10}}>
                 <TouchableOpacity
                             style={styles.SignInBt}
                                 onPress={() =>
@@ -87,7 +79,7 @@ export default function MypageScreen({navigation}) {
             </View>
             
           </View>
-</View>
+          </View>
     </View>
   </Container>
   );

@@ -1,11 +1,13 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Image, Platform, StyleSheet, View, TouchableOpacity} from 'react-native';
-import { Input, Container, Header, Left, Body, Right, Text, Button, Icon, Content, Form, Item, Label} from 'native-base';
+import {Image, View, TouchableOpacity} from 'react-native';
+import { Input, Container, Header, Left, Body, Right, Text, Button, Icon, Form, Item, Label} from 'native-base';
+import getCommonStyle from '../styles/CommonStyles';
 import getStyleSheet from '../styles/SignStyles';
 
 const screenType = 'signin';
+const commonstyle = getCommonStyle();
 const styles = getStyleSheet(screenType);
 
 
@@ -33,19 +35,17 @@ export default function SignInScreen({navigation}) {
  
   return (
     <Container>
-      <View style={styles.container}> 
+      <View style={commonstyle.backgroundColorContainer}> 
         <Header transparent>
           <Left>
           <Button transparent
              onPress={() =>
               navigation.goBack()
             }>
-              <Icon type="Feather" name="arrow-left-circle" style={{color:"#ffffff"}}/>
+              <Icon type="Feather" name="arrow-left" style={{color:"#ffffff"}}/>
             </Button>
           </Left>
-          <Body>
-            {/* <Title>로그인</Title> */}
-          </Body>
+          <Body />
           <Right />
         </Header>
         <View style={styles.logoImgContainer}>
@@ -57,7 +57,6 @@ export default function SignInScreen({navigation}) {
         </View>
 
         <View style={styles.SignInBottomContainer}>
-
         <View style={[styles.codeHighlightContainer, styles.SignInScreenFilename]}>
             <Text style={styles.SignInText}>SignIn</Text>
           </View>
@@ -86,12 +85,6 @@ export default function SignInScreen({navigation}) {
                         </TouchableOpacity>
                     </View>
                   </View>
-                  {/* <View style={{flex:2, flexDirection:"column"}}>
-                    <Button full style={styles.SignInBt}>
-                      <Text style={styles.SignInBtTxt}>SignIn</Text>
-                    </Button>
-                  </View> */}
-                
             </Form>
         </View>
     </View>
