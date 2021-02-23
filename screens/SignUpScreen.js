@@ -2,7 +2,7 @@ import * as WebBrowser from 'expo-web-browser';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Image, Platform, StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
-import { Input, Container, Header, Left, Body, Right, Button, Icon, Form, Label, Item} from 'native-base';
+import { Input, Container, Header, Left, Body, Right, Button, Icon, Label, Item} from 'native-base';
 import SomRadioButton from '../components/SomRadioButton';
 import {useRecoilState, atom} from 'recoil';
 import {userState} from '../recoil-state'
@@ -66,7 +66,7 @@ export default function signUpScreen({navigation}) {
 
     return (
         <Container>
-            <View style={styles.container}>
+            <View style={commonstyle.backgroundColorContainer}>
                 <Header transparent>
                     <Left>
                         <Button transparent
@@ -80,11 +80,10 @@ export default function signUpScreen({navigation}) {
                     </Body>
                     <Right />
                 </Header>
-                <View style={styles.SignInBottomContainer}>
+                <View style={styles.signInBottomContainer}>
                     <View style={[styles.codeHighlightContainer, styles.signUpScreenFilename]}>
-                        <Text style={styles.SignInText}>Sign Up</Text>
+                        <Text style={styles.signInText}>Sign Up</Text>
                     </View>
-                    <Form onSubmit={handleSubmit}>
                         <Item floatingLabel>
                             <Label htmlFor="id" style={styles.labelSt}>E-mail (ID)</Label>
                             <Input type="text" name="id" value={userSignUp.id} onChange={handleChange} required />
@@ -123,8 +122,6 @@ export default function signUpScreen({navigation}) {
                                 <Text style={styles.signupBtTxt}>Sign Up</Text>
                             </TouchableOpacity>
                         </View>
-
-                    </Form>
                 </View>
             </View>
         </Container>

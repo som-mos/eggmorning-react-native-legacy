@@ -6,9 +6,9 @@ import { Input, Container, Header, Left, Body, Right, Text, Button, Icon, Form, 
 import getCommonStyle from '../styles/CommonStyles';
 import getStyleSheet from '../styles/SignStyles';
 
-const screenType = 'signin';
+const screentype = 'signin';
 const commonstyle = getCommonStyle();
-const styles = getStyleSheet(screenType);
+const styles = getStyleSheet(screentype);
 
 
 export default function SignInScreen({navigation}) {
@@ -53,12 +53,12 @@ export default function SignInScreen({navigation}) {
             source={require('../img/logo.png')}
             style={styles.logoImage}
           />
-          <Text style={styles.logoImageT}>Hello, Egg Morning!</Text>
+          <Text style={styles.logoImageT}>Hello, Egg Morning!</Text> 
         </View>
 
-        <View style={styles.SignInBottomContainer}>
-        <View style={[styles.codeHighlightContainer, styles.SignInScreenFilename]}>
-            <Text style={styles.SignInText}>SignIn</Text>
+        <View style={styles.signInBottomContainer}>
+        <View style={[styles.codeHighlightContainer, styles.signInScreenFilename]}>
+            <Text style={styles.signInText}>Sign In</Text>
           </View>
             <Form>
                 <Item floatingLabel>
@@ -73,15 +73,15 @@ export default function SignInScreen({navigation}) {
                     <View>
                         <Text style={styles.warningText}>아이디 또는 비밀번호가 일치하지 않습니다.</Text>
                     </View>
-                    <View style={{marginTop:'20%'}}> 
+                    <View style={{marginTop:"10vh"}}> 
                     <Right>
                         <Text style={styles.signUp}>아직 계정이 없으신가요?
                         <Text style={styles.signUpBt} onPress={() =>navigation.navigate('SignUp', { name: 'SignUp' })}> 회원가입</Text></Text>
                       </Right>
                         <TouchableOpacity 
                         onPress={handleSubmit} 
-                        style={styles.SignInBt} >
-                          <Text style={styles.SignInBtTxt}>SignIn</Text>
+                        style={styles.signInBt} >
+                          <Text style={styles.signInBtTxt}>SignIn</Text>
                         </TouchableOpacity>
                     </View>
                   </View>

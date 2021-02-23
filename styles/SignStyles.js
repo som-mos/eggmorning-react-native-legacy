@@ -3,12 +3,7 @@ import { StyleSheet } from 'react-native'
 
 // signin 과 signup을 함께 관리하는 스타일시트. switch문을 이용하여 적용시킬 스타일 케이스를 선언하면 원하는 스타일을 입힐 수 있다.
 
-const SignInScreenStyle = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#FFCE70',
-  },
+const signInScreenStyle = StyleSheet.create({
   developmentModeText: {
     marginBottom: 20,
     color: 'rgba(0,0,0,0.4)',
@@ -24,7 +19,7 @@ const SignInScreenStyle = StyleSheet.create({
     alignItems: 'center',
     height: '25%',
     maxHeight:160,
-    flex:1,
+    flex:2,
   }, 
   logoImage: {
     width:200,
@@ -39,8 +34,9 @@ const SignInScreenStyle = StyleSheet.create({
     fontSize:20,
     fontWeight:'600'
   },
-   SignInBottomContainer: {
+   signInBottomContainer: {
     alignItems: 'center',
+    justifyContent:'center',
     height:'75%',
     width:'100%',
     margin:0,
@@ -50,11 +46,13 @@ const SignInScreenStyle = StyleSheet.create({
     borderTopLeftRadius:50,
     borderTopRightRadius:50
   },
-  SignInText:{
+  codeHighlightContainer: {
+    marginHorizontal:20
+  },
+  signInText:{
     fontSize: 20,
     color:"#7a7a7a",
     fontWeight:'600',
-    marginTop:"12%"
   },
   inputText: {
     width:30,
@@ -71,7 +69,7 @@ const SignInScreenStyle = StyleSheet.create({
     borderBottomWidth: 200,
     borderBottomWidth: 1,
   },
-  SignInRows: {
+  signInRows: {
     flex:1,
     flexDirection:"row",
     paddingLeft:10,
@@ -94,7 +92,7 @@ const SignInScreenStyle = StyleSheet.create({
     fontSize:14,
     fontWeight:"600",
   },
-  SignInBt:{
+  signInBt:{
     height: 50,
     width: 250,
     backgroundColor:"#FFCE70",
@@ -103,7 +101,7 @@ const SignInScreenStyle = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
-  SignInBtTxt:{
+  signInBtTxt:{
     color:"#fff",
     fontSize:20, 
     fontWeight:"400",
@@ -151,7 +149,7 @@ logoImage: {
 logoImageT:{
     marginLeft: -10,
 },
-SignInBottomContainer: {
+signInBottomContainer: {
     alignItems: 'center',
     bottom:0,
     height:'85%',
@@ -178,7 +176,7 @@ getStartedText: {
     lineHeight: 24,
     textAlign: 'center',
 },
-SignInText:{
+signInText:{
     fontSize: 20,
     color:"#7a7a7a",
     fontWeight:'600',
@@ -227,7 +225,7 @@ inputStyle: {
     borderBottomWidth: 200,
     borderBottomWidth: 1,
 },
-SignInRows: {
+signInRows: {
     maxHeight: 60,
     width: '100%',
 },
@@ -270,7 +268,7 @@ radioBt: {
 export default function getStyleSheet(screenType) {
     switch (screenType) {
       case 'signin':
-        return SignInScreenStyle;
+        return signInScreenStyle;
       case 'signup':
         return SignUpScreenStyle; 
     }
