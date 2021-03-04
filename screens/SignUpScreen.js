@@ -1,8 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Image, Platform, StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
-import { Input, Container, Header, Left, Body, Right, Button, Icon, Label, Item} from 'native-base';
+import { Image, Platform, StyleSheet, Text, View, TouchableOpacity, TextInput  } from 'react-native';
+import { Container, Header, Left, Body, Right, Button, Icon, Label, Item} from 'native-base';
 import SomRadioButton from '../components/SomRadioButton';
 import {useRecoilState, atom} from 'recoil';
 import {userState} from '../recoil-state'
@@ -33,24 +33,39 @@ const styles = getStyleSheet(screenType);
 
 export default function signUpScreen({navigation}) {
 
+const [userSignUp, setUserSignUp] = React.useState (
+    { id: '', nickname: '', password:'', passwordchk:'', phone: '', gender:'' }
+);
+
+
+useEffect(() => {
+    setUserSignUp({...userSignUp})
+    console.log("userSignUp - ", userSignUp)
+}, [])
+
+
+
+// const handleEdit = (event) => {
+//         setUserSignUp({...userSignUp, [event.target.name]: event.target.value})
+//         console.log("userSignUp - ", userSignUp)
+//     };
     
-    const [userSignUp, setUserSignUp] = useState (
-        { id: '', nickname: '', password:'', passwordchk:'', phone: '', gender:'' }
-    );
     const {genderState} = userState;
     const [genderValue, setGenderValue] = useRecoilState(genderState);
-
+    
     useEffect(()=>{
         setUserSignUp({...userSignUp, gender:genderValue})
     }, [genderValue]);
 
-    useEffect(()=>{
-        console.log("userSignUp - ", userSignUp)
-    }, [userSignUp]);
+    console.log("userSignUp - ", userSignUp);
 
-    const handleChange = (event) => {
-        setUserSignUp({...userSignUp, [event.target.name]: event.target.value})
-    };
+    
+    // useEffect((event)=>{
+    //     setUserSignUp({...userSignUp, [event['name']]: event['value']})   
+    //     console.log("userSignUp - ", userSignUp)
+    // }, [userSignUp]);
+    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -84,34 +99,66 @@ export default function signUpScreen({navigation}) {
                     <View style={[styles.codeHighlightContainer, styles.signUpScreenFilename]}>
                         <Text style={styles.signInText}>Sign Up</Text>
                     </View>
-                        <Item floatingLabel>
-                            <Label htmlFor="id" style={styles.labelSt}>E-mail (ID)</Label>
-                            <Input type="text" name="id" value={userSignUp.id} onChange={handleChange} required />
-                            {/* <Icon name='close-circle' /> */}
-                        </Item>
-                        <Item floatingLabel>
-                            <Label htmlFor="nickname" style={styles.labelSt}>Nickname</Label>
-                            <Input type="text" name="nickname" value={userSignUp.name} onChange={handleChange} required/>
-                            {/* <Icon name='close-circle' /> */}
-                        </Item>
-                        <Item floatingLabel>
-                            <Label htmlFor="password" style={styles.labelSt}>Password</Label>
-                            <Input type="password" name="password" value={userSignUp.password} onChange={handleChange} required/>
-                            {/* <Icon name='close-circle' /> */}
-                        </Item>
-                        <Item floatingLabel>
-                            <Label htmlFor="passwordchk" style={styles.labelSt}>Check Password</Label>
-                            <Input type="password" name="passwordchk" value={userSignUp.passwordchk} onChange={handleChange} required/>
-                        </Item>
-                        <Item floatingLabel>
-                            <Label htmlFor="phone" style={styles.labelSt}>Phone</Label>
-                            <Input type="text" name="phone" value={userSignUp.phone} onChange={handleChange} required/>
-                            {/* <Icon name='close-circle' /> */}
-                        </Item>
-                        {/* <Icon name='close-circle' /> */}
+                        <View>
+                            <Label style={styles.labelSt}>E-mail (ID)</Label>
+                            <TextInput
+                                style={{width:"100%"}}
+                                borderBottomWidth="1px"
+                                textContentType="emailAddress"
+                                name="id" 
+                                onChangeText={(text) => setUserSignUp({...userSignUp, id: text})}
+                                // value={userSignUp.id}
+                                // onChange={handleChange}
+                                />
+                        </View>
+                        <View>
+                            <Label style={styles.labelSt}>Nickname</Label>
+                            <TextInput
+                                style={{width:"100%"}} 
+                                textContentType="nickname"
+                                name="nickname"
+                                onChangeText={(text) => setUserSignUp({...userSignUp, nickname: text})}
+                                // value={userSignUp.nickname}
+                                // onChange={handleChange}
+                                />
+                        </View>
+                        <View>
+                            <Label style={styles.labelSt}>Password</Label>
+                            <TextInput
+                                style={{width:"100%"}} 
+                                secureTextEntry={true}
+                                textContentType="password"
+                                name="password"
+                                onChangeText={(text) => setUserSignUp({...userSignUp, password: text})}
+                                // value={userSignUp.password}
+                                // onChange={handleChange}
+                                />
+                        </View>
+                        <View>
+                            <Label style={styles.labelSt}>Check Password</Label>
+                            <TextInput
+                                style={{width:"100%"}}
+                                secureTextEntry={true}
+                                textContentType="password"
+                                name="passwordchk"
+                                onChangeText={(text) => setUserSignUp({...userSignUp, passwordchk: text})}
+                                // value={userSignUp.passwordchk}
+                                // onChange={handleChange}
+                                />
+                        </View>
+                        <View>
+                            <Label style={styles.labelSt}>Phone</Label>
+                            <TextInput
+                                style={{width:"100%"}} 
+                                name="phone"
+                                onChangeText={(text) => setUserSignUp({...userSignUp, phone: text})}
+                                // value={userSignUp.phone}
+                                // onChange={handleChange}
+                                />
+                        </View>
                         <View style={styles.radioBt}>
                             <Text style={styles.titleSt}>Gender</Text>
-                            <SomRadioButton dataList={genderList} recoilState={ genderState }/>
+                            <SomRadioButton dataList={genderList} recoilState={ genderState } name="gender" />
                         </View>
 
 
