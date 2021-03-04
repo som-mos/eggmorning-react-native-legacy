@@ -37,34 +37,14 @@ const [userSignUp, setUserSignUp] = React.useState (
     { id: '', nickname: '', password:'', passwordchk:'', phone: '', gender:'' }
 );
 
-
-useEffect(() => {
-    setUserSignUp({...userSignUp})
-    console.log("userSignUp - ", userSignUp)
-}, [])
-
-
-
-// const handleEdit = (event) => {
-//         setUserSignUp({...userSignUp, [event.target.name]: event.target.value})
-//         console.log("userSignUp - ", userSignUp)
-//     };
-    
     const {genderState} = userState;
     const [genderValue, setGenderValue] = useRecoilState(genderState);
     
     useEffect(()=>{
         setUserSignUp({...userSignUp, gender:genderValue})
     }, [genderValue]);
-
     console.log("userSignUp - ", userSignUp);
 
-    
-    // useEffect((event)=>{
-    //     setUserSignUp({...userSignUp, [event['name']]: event['value']})   
-    //     console.log("userSignUp - ", userSignUp)
-    // }, [userSignUp]);
-    
 
 
     const handleSubmit = (e) => {
@@ -79,6 +59,7 @@ useEffect(() => {
         console.log({userSignUp});
     };
 
+    
     return (
         <Container>
             <View style={commonstyle.backgroundColorContainer}>
@@ -107,8 +88,6 @@ useEffect(() => {
                                 textContentType="emailAddress"
                                 name="id" 
                                 onChangeText={(text) => setUserSignUp({...userSignUp, id: text})}
-                                // value={userSignUp.id}
-                                // onChange={handleChange}
                                 />
                         </View>
                         <View>
@@ -118,8 +97,6 @@ useEffect(() => {
                                 textContentType="nickname"
                                 name="nickname"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, nickname: text})}
-                                // value={userSignUp.nickname}
-                                // onChange={handleChange}
                                 />
                         </View>
                         <View>
@@ -130,8 +107,6 @@ useEffect(() => {
                                 textContentType="password"
                                 name="password"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, password: text})}
-                                // value={userSignUp.password}
-                                // onChange={handleChange}
                                 />
                         </View>
                         <View>
@@ -142,8 +117,6 @@ useEffect(() => {
                                 textContentType="password"
                                 name="passwordchk"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, passwordchk: text})}
-                                // value={userSignUp.passwordchk}
-                                // onChange={handleChange}
                                 />
                         </View>
                         <View>
@@ -152,8 +125,6 @@ useEffect(() => {
                                 style={{width:"100%"}} 
                                 name="phone"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, phone: text})}
-                                // value={userSignUp.phone}
-                                // onChange={handleChange}
                                 />
                         </View>
                         <View style={styles.radioBt}>
