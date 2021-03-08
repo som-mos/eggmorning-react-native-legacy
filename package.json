@@ -30,7 +30,7 @@
     "expo-updates": "~0.4.1",
     "expo-web-browser": "~8.6.0",
     "http-proxy-middleware": "^1.0.6",
-    "native-base": "2.13.8",
+    "native-base": "~2.15.2",
     "patch-package": "^6.2.2",
     "postinstall-postinstall": "^2.1.0",
     "prop-types": "^15.7.2",
