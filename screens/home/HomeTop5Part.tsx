@@ -25,8 +25,9 @@ const HomeTop5Part = (props) => {
                 <Row style={{height: 36, marginLeft: 30, marginBottom: 25}}>
                     <Text style={commonStyle.textTitle}>Top5</Text>
                 </Row>
-                <Row style={{height: 36, marginLeft: 30, marginBottom: 25}}>
+                <Row style={{marginLeft: 30, marginBottom: 25}}>
                     <Content style={{height: 36, paddingLeft: 15, paddingRight: 15}}>
+                        <Text>test</Text>
                         <List>
                             <ListItem thumbnail>
                                 <Text style={styles.red}>1</Text>
