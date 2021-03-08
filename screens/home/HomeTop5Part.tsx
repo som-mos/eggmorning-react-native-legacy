@@ -12,7 +12,7 @@ const hotelImage = ["https://cookieandkate.com/images/2018/09/crispy-fried-egg-r
 const commonStyle = getCommonStyle();
 const styles = getStyleSheet();
 
-
+const pageWidth = Dimensions.get("window").width;
 
 const HomeTop5Part = (props) => {
     const ratingCompleted = (rating) => {
@@ -26,8 +26,7 @@ const HomeTop5Part = (props) => {
                     <Text style={commonStyle.textTitle}>Top5</Text>
                 </Row>
                 <Row style={{marginLeft: 30, marginBottom: 25}}>
-                    <Content style={{height: 36, paddingLeft: 15, paddingRight: 15}}>
-                        <Text>test</Text>
+                    <Content style={{width:pageWidth}}>
                         <List>
                             <ListItem thumbnail>
                                 <Text style={styles.red}>1</Text>
