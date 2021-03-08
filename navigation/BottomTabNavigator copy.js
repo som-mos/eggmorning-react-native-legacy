@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import TouchableHighlight from 'react-native';
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/home/HomeScreen';
 import BookmarkScreen from '../screens/BookmarkScreen';
 import SearchScreen from '../screens/SearchScreen';
 import MypageScreen from '../screens/MypageScreen';
