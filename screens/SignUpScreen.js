@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Image, Platform, StyleSheet, Text, View, TouchableOpacity, TextInput  } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Label, Item} from 'native-base';
-import SomRadioButton from '../components/SomRadioButton';
 import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view'
-import {useRecoilState, atom} from 'recoil';
+import SomRadioButton from '../components/SomRadioButton';
+import {useRecoilState, atom, errorSelector} from 'recoil';
 import {userState} from '../recoil-state'
 import getCommonStyle from '../styles/CommonStyles';
 import getStyleSheet from '../styles/SignStyles';
@@ -45,7 +45,16 @@ const [userSignUp, setUserSignUp] = React.useState (
     }, [genderValue]);
     console.log("userSignUp - ", userSignUp);
 
-
+    
+    // const emailValidate = (values, props /* only available when using withFormik */) => {
+    //     const errors = {};
+    //     if (!values.email) {
+    //       errors.email = 'Required';
+    //     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    //       errors.email = 'Invalid email address';
+    //     }
+    //     return errors;
+    //   };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -58,6 +67,11 @@ const [userSignUp, setUserSignUp] = React.useState (
             });
         console.log({userSignUp});
     };
+
+    const onSubmit = () => {
+        console.log(userSignUp)
+    }
+
 
     
     return (
@@ -87,7 +101,9 @@ const [userSignUp, setUserSignUp] = React.useState (
                                 style={styles.textInputStyle}
                                 textContentType="emailAddress"
                                 name="id" 
+                                keyboardType="email-address"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, id: text})}
+                                // onEndEditing={emailValidate(userSignUp.id)}
                                 />
                         </View>
                         <View style={styles.inputWrapper}>
@@ -124,18 +140,19 @@ const [userSignUp, setUserSignUp] = React.useState (
                             <TextInput
                                 style={styles.textInputStyle} 
                                 name="phone"
+                                keyboardType="numberic"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, phone: text})}
                                 />
                         </View>
                         <View style={styles.radioBt}>
-                            <Text style={styles.titleSt}>Gender</Text>
+                            <Text style={styles.labelSt}>Gender</Text>
                             <SomRadioButton dataList={genderList} recoilState={ genderState } name="gender" />
                         </View>
 
 
                         <View style={{flex:1}}>
                             <TouchableOpacity
-                                onPress={handleSubmit}
+                                onPress={onSubmit}
                                 style={styles.signupBt} >
                                 <Text style={styles.signupBtTxt}>Sign Up</Text>
                             </TouchableOpacity>

@@ -46,13 +46,13 @@ const signInScreenStyle = StyleSheet.create({
     borderTopRightRadius:50
   },
   codeHighlightContainer: {
-    marginBottom:20
+    // marginBottom:20
   },
   inputWrapper:{
-    height: 48,
+    height: 46,
     width: '60%',
     marginTop:20,
-    borderBottomColor: 'rgba(0,0,0,0.1)',
+    borderBottomColor: 'rgba(0,0,0,0.07)',
     borderBottomWidth: 200,
     borderBottomWidth: 1,
     overflow: 'hidden',
@@ -82,7 +82,6 @@ const signInScreenStyle = StyleSheet.create({
     fontSize:12,
     marginTop:15,
     alignSelf:"center",
-    display:'none'
   },
   signUp:{
     color:"#7a7a7a",
@@ -112,6 +111,7 @@ const signInScreenStyle = StyleSheet.create({
   },
   labelSt:{
     color:"#bebbbf",
+    fontSize:14
   },
 developmentModeText: {
     marginBottom: 20,
@@ -172,28 +172,9 @@ signInText:{
     fontSize: 20,
     color:"#7a7a7a",
     fontWeight:'600',
-    marginTop:30
+    marginTop:30,
+    marginBottom:20
 },
-// tabBarInfoContainer: {
-//     position: 'absolute',
-//     bottom: 0,
-//     left: 0,
-//     right: 0,
-//     ...Platform.select({
-//         ios: {
-//             shadowColor: 'black',
-//             shadowOffset: { width: 0, height: -3 },
-//             shadowOpacity: 0.1,
-//             shadowRadius: 3,
-//         },
-//         android: {
-//             elevation: 20,
-//         },
-//     }),
-//     alignItems: 'center',
-//     backgroundColor: '#fbfbfb',
-//     paddingVertical: 20,
-// },
 tabBarInfoText: {
     fontSize: 17,
     color: 'rgba(96,100,109, 1)',
@@ -239,10 +220,6 @@ signupBtTxt:{
     color:"#fff",
     fontSize:20,
     fontWeight:"400",
-},
-titleSt:{
-    color:"#bebbbf",
-    fontSize:16,
 },
 radioBt: {
     marginLeft:15,
