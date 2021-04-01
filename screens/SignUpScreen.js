@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Image, Platform, StyleSheet, Text, View, TouchableOpacity, TextInput  } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Label, Item} from 'native-base';
 import SomRadioButton from '../components/SomRadioButton';
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view'
 import {useRecoilState, atom} from 'recoil';
 import {userState} from '../recoil-state'
 import getCommonStyle from '../styles/CommonStyles';
@@ -28,8 +29,7 @@ const genderList = [
 ];
 
 const commonstyle = getCommonStyle();
-const screenType = 'signup';
-const styles = getStyleSheet(screenType);
+const styles = getStyleSheet();
 
 export default function signUpScreen({navigation}) {
 
@@ -62,6 +62,7 @@ const [userSignUp, setUserSignUp] = React.useState (
     
     return (
         <Container>
+            <KeyboardAwareScrollView>
             <View style={commonstyle.backgroundColorContainer}>
                 <Header transparent>
                     <Left>
@@ -77,52 +78,51 @@ const [userSignUp, setUserSignUp] = React.useState (
                     <Right />
                 </Header>
                 <View style={styles.signInBottomContainer}>
-                    <View style={[styles.codeHighlightContainer, styles.signUpScreenFilename]}>
+                    <View style={styles.codeHighlightContainer}>
                         <Text style={styles.signInText}>Sign Up</Text>
                     </View>
-                        <View>
+                        <View style={styles.inputWrapper}>
                             <Label style={styles.labelSt}>E-mail (ID)</Label>
                             <TextInput
-                                style={{width:"100%"}}
-                                borderBottomWidth="1px"
+                                style={styles.textInputStyle}
                                 textContentType="emailAddress"
                                 name="id" 
                                 onChangeText={(text) => setUserSignUp({...userSignUp, id: text})}
                                 />
                         </View>
-                        <View>
+                        <View style={styles.inputWrapper}>
                             <Label style={styles.labelSt}>Nickname</Label>
                             <TextInput
-                                style={{width:"100%"}} 
+                                style={styles.textInputStyle} 
                                 textContentType="nickname"
                                 name="nickname"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, nickname: text})}
                                 />
                         </View>
-                        <View>
+                        <View style={styles.inputWrapper}>
                             <Label style={styles.labelSt}>Password</Label>
                             <TextInput
-                                style={{width:"100%"}} 
+                                style={styles.textInputStyle} 
                                 secureTextEntry={true}
                                 textContentType="password"
                                 name="password"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, password: text})}
                                 />
                         </View>
-                        <View>
+                        <View style={styles.inputWrapper}>
                             <Label style={styles.labelSt}>Check Password</Label>
                             <TextInput
-                                style={{width:"100%"}}
+                                style={styles.textInputStyle}
                                 secureTextEntry={true}
                                 textContentType="password"
                                 name="passwordchk"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, passwordchk: text})}
                                 />
                         </View>
-                        <View>
+                        <View style={styles.inputWrapper}>
                             <Label style={styles.labelSt}>Phone</Label>
                             <TextInput
-                                style={{width:"100%"}} 
+                                style={styles.textInputStyle} 
                                 name="phone"
                                 onChangeText={(text) => setUserSignUp({...userSignUp, phone: text})}
                                 />
@@ -142,6 +142,7 @@ const [userSignUp, setUserSignUp] = React.useState (
                         </View>
                 </View>
             </View>
+            </KeyboardAwareScrollView>
         </Container>
     );
 }

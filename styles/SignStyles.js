@@ -1,9 +1,8 @@
 import { StyleSheet } from 'react-native'
 
 
-// signin 과 signup을 함께 관리하는 스타일시트. switch문을 이용하여 적용시킬 스타일 케이스를 선언하면 원하는 스타일을 입힐 수 있다.
-
 const signInScreenStyle = StyleSheet.create({
+
   developmentModeText: {
     marginBottom: 20,
     color: 'rgba(0,0,0,0.4)',
@@ -37,7 +36,7 @@ const signInScreenStyle = StyleSheet.create({
    signInBottomContainer: {
     alignItems: 'center',
     justifyContent:'center',
-    height:'75%',
+    height:'80%',
     width:'100%',
     margin:0,
     padding:0,
@@ -47,19 +46,22 @@ const signInScreenStyle = StyleSheet.create({
     borderTopRightRadius:50
   },
   codeHighlightContainer: {
-    marginHorizontal:20
+    marginBottom:20
   },
-  signInText:{
-    fontSize: 20,
-    color:"#7a7a7a",
-    fontWeight:'600',
+  inputWrapper:{
+    height: 48,
+    width: '60%',
+    marginTop:20,
+    borderBottomColor: 'rgba(0,0,0,0.1)',
+    borderBottomWidth: 200,
+    borderBottomWidth: 1,
+    overflow: 'hidden',
   },
-  inputText: {
-    width:30,
-    lineHeight:30,
-    height:30,
+  textInputStyle: {
+    lineHeight:20,
+    height:26,
     textAlignVertical: 'center',
-    textAlign: 'right',
+    textAlign: 'left',
   },
   inputStyle: {
     height:30,
@@ -109,18 +111,8 @@ const signInScreenStyle = StyleSheet.create({
     paddingTop: 3,
   },
   labelSt:{
-    color:"#bebbbf"
-  }
-});
-
-
-
-const SignUpScreenStyle = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#FFCE70',
-},
+    color:"#bebbbf",
+  },
 developmentModeText: {
     marginBottom: 20,
     color: 'rgba(0,0,0,0.4)',
@@ -248,15 +240,11 @@ signupBtTxt:{
     fontSize:20,
     fontWeight:"400",
 },
-labelSt:{
-    color:"#bebbbf"
-},
 titleSt:{
     color:"#bebbbf",
     fontSize:16,
 },
 radioBt: {
-    // flex: 1,
     marginLeft:15,
     marginRight: 15,
     marginTop:25,
@@ -265,11 +253,7 @@ radioBt: {
 });
 
 
-export default function getStyleSheet(screenType) {
-    switch (screenType) {
-      case 'signin':
+export default function getStyleSheet() {
         return signInScreenStyle;
-      case 'signup':
-        return SignUpScreenStyle; 
-    }
+
 }
