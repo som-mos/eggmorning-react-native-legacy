@@ -50,7 +50,7 @@ const signInScreenStyle = StyleSheet.create({
   },
   inputWrapper:{
     height: 46,
-    width: '60%',
+    width: '100%',
     marginTop:20,
     borderBottomColor: 'rgba(0,0,0,0.07)',
     borderBottomWidth: 200,
@@ -62,6 +62,7 @@ const signInScreenStyle = StyleSheet.create({
     height:26,
     textAlignVertical: 'center',
     textAlign: 'left',
+    width:'80%',
   },
   inputStyle: {
     height:30,
@@ -212,7 +213,6 @@ signupBt:{
     backgroundColor:"#FFCE70",
     borderRadius:8,
     marginTop:35,
-    // marginBottom:25,
     alignItems: "center",
     padding: 10,
 },
@@ -221,12 +221,17 @@ signupBtTxt:{
     fontSize:20,
     fontWeight:"400",
 },
+errMsg: {
+  color:"#c0524c",
+  fontSize:12,
+},
 radioBt: {
     marginLeft:15,
-    marginRight: 15,
+    marginRight:15,
     marginTop:25,
     marginBottom:0,
-}
+},
+
 });
 
 
